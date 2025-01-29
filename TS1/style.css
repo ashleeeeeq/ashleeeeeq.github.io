@@ -1,30 +1,96 @@
+/* General Styles */
 body {
-    background-color: #f4f4f4;
-    position: relative;
+    background-color: #f5f5f5;
+    display: flex;
     justify-content: space-between;
+    padding: 20px;
+    position: relative;
 }
 
+/* Button Styles */
 button {
-    margin-top: 20px;
-    padding: 10px 20px;
+    top: 20px;
+    left: 20px;
+    padding: 8px 15px;
     cursor: pointer;
     font-size: 16px;
+    background-color: #333333;
+    color: white;
+    border: 2px solid #333333;
+    border-radius: 5px;
+    box-shadow: 5px 5px 0px black;
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    z-index: 1000;
 }
 
+button:hover {
+    background-color: #888888;
+    color: #000302;
+    border: 2.5px solid #222222;
+    box-shadow: none;
+}
+
+hr {
+    margin: 20px 0;
+    border: 1px solid #000;
+}
+
+/* Resume Styles */
 .resume {
     width: 60%;
-    margin: auto;
-    background-color: white;
-    padding: 20px;
+    background-color: #f8f8ff;
+    padding: 70px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px gray;
+    border: 1px solid #000;
+    box-shadow: 0px 0px 21px #dfdfdf;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    min-width: 300px;
 }
 
-img {
-    width: 100px;
+/* Header (Includes Profile Picture) */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.content h3:nth-child(3), .content h3:nth-last-child(2) {
+    margin-top: 40px;
+}
+
+.info {
+    flex: 1;
+    text-align: left;
+}
+
+.info > p {
+    line-height: 10px;
+}
+
+/* Profile Picture */
+.profile-pic img {
+    width: 150px;
+    max-width: 100%;
     height: auto;
+    border-radius: 5px;
+    border: 2px solid #000;
 }
 
+/* Resume Content */
+.content {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.content > p {
+    text-align: justify;
+}
+
+/* Academic Background Formatting */
 .academic {
     display: flex;
     flex-direction: column;
@@ -45,4 +111,45 @@ img {
 .school {
     text-align: right;
     flex: 2;
+}
+
+/* Skills List */
+ul {
+    list-style: none;
+    padding: 0;
+    text-align: justify;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+li {
+    margin-left: 10%;
+    list-style-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%230B0C3B"><path d="M12 21c-.26 0-.51-.1-.71-.29a.996.996 0 0 1 0-1.41l7.29-7.29-7.29-7.29a.996.996 0 1 1 1.41-1.41l8 8c.39.39.39 1.02 0 1.41l-8 8c-.2.2-.45.29-.71.29ZM4 21c-.26 0-.51-.1-.71-.29a.996.996 0 0 1 0-1.41l7.29-7.29-7.29-7.3A.996.996 0 1 1 4.7 3.3l8 8c.39.39.39 1.02 0 1.41l-8 8c-.2.2-.45.29-.71.29Z"></path></svg>');
+}
+
+li::marker {
+    font-size: 25px;
+}
+
+/* Prevent Resume from Overlapping Button */
+@media (max-width: 768px) {
+    .resume {
+        width: 90%;
+        right: auto;
+        top: 50px;
+    }
+    button {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        padding: 5px 10px;
+        font-size: 12px;
+        border: 1px solid #333333;
+        border-radius: 2.5px;
+        box-shadow: 2.5px 2.5px 0px black;
+        transform: translateX(10%);
+        z-index: 100;
+    }
 }

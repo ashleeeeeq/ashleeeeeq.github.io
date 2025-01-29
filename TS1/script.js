@@ -1,7 +1,14 @@
-var colors = ["#ffb3ba", "#ffdfba", "#ffffba", "#baffc9", "#bae1ff", "#f8f8ff"];
+var colors = [
+    { background: "#633901", font: "#fffcd7" },
+    { background: "#090013", font: "#fef7ff" },
+    { background: "#d2f9fe", font: "#09001b" },
+    { background: "#fef7ff", font: "#310330" }
+]; // Define colors (background and font)
 var index = 0;
 
 function changeColor() {
-    document.querySelector(".resume").style.backgroundColor = colors[index];
+    var resumeElement = document.querySelector(".resume");
+    resumeElement.style.backgroundColor = colors[index].background;
+    resumeElement.style.color = colors[index].font; // Change font color
     index = (index + 1) % colors.length; // Cycle through colors
 }

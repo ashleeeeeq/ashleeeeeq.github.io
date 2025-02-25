@@ -1,12 +1,12 @@
 // Colors for each day
 var dayColors = {
-    "Monday": { bg: "white", border: "wheat" },
-    "Tuesday": { bg: "red", border: "darkred" },
-    "Wednesday": { bg: "yellow", border: "gold" },
-    "Thursday": { bg: "green", border: "darkgreen" },
-    "Friday": { bg: "pink", border: "deeppink" },
-    "Saturday": { bg: "purple", border: "indigo" },
-    "Sunday": { bg: "orange", border: "darkorange" }
+    "Monday": { bg: "#FFFFFF", border: "#F8F8FF" }, 
+    "Tuesday": { bg: "#FF5733", border: "#C70039" },
+    "Wednesday": { bg: "#FFD700", border: "#B8860B" }, 
+    "Thursday": { bg: "#4CAF50", border: "#388E3C" }, 
+    "Friday": { bg: "#FF69B4", border: "#C71585" }, 
+    "Saturday": { bg: "#6A5ACD", border: "#483D8B" }, 
+    "Sunday": { bg: "#FFA500", border: "#FF8C00" }
 };
 
 var buttons = document.querySelectorAll(".day-btn");

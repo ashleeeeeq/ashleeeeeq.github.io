@@ -20,27 +20,60 @@ for (var i = 0; i < buttons.length; i++) {
 
 function createAnimatedBox(day) {
     var animationArea = document.querySelector(".animation-area");
-    
-    var existingBoxes = animationArea.querySelectorAll(".box");
-    for (var j = 0; j < existingBoxes.length; j++) {
-        existingBoxes[j].style.animation = "moveUp 1s ease-in-out forwards";
-    }
+
+    document.querySelectorAll(".box").forEach(box => {
+        box.style.top = "-100px"; 
+        setTimeout(() => box.remove(), 1500);
+    });
 
     var newBox = document.createElement("div");
     newBox.className = "box";
-    newBox.style.backgroundColor = dayColors[day].bg;
-    newBox.style.border = "10px solid " + dayColors[day].border;
+    newBox.style.borderColor = dayColors[day].border;
+    newBox.style.backgroundColor = "transparent"; 
     newBox.style.top = "-100px";
-
-    newBox.style.animation = "moveDown 1s ease-in-out forwards, changeColor 1s ease-in-out forwards 0.5s";
+    newBox.dataset.bgColor = dayColors[day].bg;
 
     animationArea.appendChild(newBox);
 
-    setTimeout(function() {
-        for (var k = 0; k < existingBoxes.length; k++) {
-            if (parseInt(existingBoxes[k].style.top) <= -100) {
-                existingBoxes[k].remove();
+    setTimeout(() => {
+        newBox.style.top = "60%";
+    }, 300); 
+
+    setTimeout(checkOverlaps, 100);
+}
+
+function checkOverlaps() {
+    var boxes = document.querySelectorAll(".box");
+
+    boxes.forEach(box1 => {
+        var isOverlapping = false;
+
+        boxes.forEach(box2 => {
+            if (box1 !== box2 && isOverlappingElements(box1, box2)) {
+                isOverlapping = true;
             }
+        });
+
+        if (isOverlapping) {
+            box1.style.backgroundColor = box1.dataset.bgColor;
+            box1.style.opacity = "0.7";
+        } else {
+            box1.style.backgroundColor = "transparent";
+            box1.style.opacity = "1";
         }
-    }, 1000);
+    });
+
+    requestAnimationFrame(checkOverlaps);
+}
+
+function isOverlappingElements(el1, el2) {
+    var rect1 = el1.getBoundingClientRect();
+    var rect2 = el2.getBoundingClientRect();
+
+    return !(
+        rect1.right < rect2.left ||
+        rect1.left > rect2.right ||
+        rect1.bottom < rect2.top ||
+        rect1.top > rect2.bottom
+    );
 }

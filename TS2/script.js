@@ -22,7 +22,7 @@ function createAnimatedBox(day) {
     var animationArea = document.querySelector(".animation-area");
 
     document.querySelectorAll(".box").forEach(box => {
-        box.style.top = "-100px"; 
+        box.style.top = "-10px"; 
         setTimeout(() => box.remove(), 1500);
     });
 
@@ -30,7 +30,7 @@ function createAnimatedBox(day) {
     newBox.className = "box";
     newBox.style.borderColor = dayColors[day].border;
     newBox.style.backgroundColor = "transparent"; 
-    newBox.style.top = "-100px";
+    newBox.style.top = "-10px";
     newBox.dataset.bgColor = dayColors[day].bg;
 
     animationArea.appendChild(newBox);

@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(39deg,#61c16b,#4e7577,#2340d9,#b15f93,#1dcb8b,#ac9905);
+    background: linear-gradient(39deg,#4e57c1,#7e4e77);
     background-size: 360% 360%;
     animation: gradient-animation 36s ease infinite;
 }
@@ -28,6 +28,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    background: #F8F8FF;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .display-input {
@@ -84,19 +88,23 @@ body {
     font-weight: bold;
 }
 
-.btn:nth-child(17) { /* 0 button */
+.btn-zero {
+    grid-column: span 2;
     background: #ff9f43;
     color: white;
-    width: 230px;
-    grid-column: span 3;
+    width: 150px;
 }
 
-.btn:nth-child(16) { /* Equals button */
+.btn-zero:hover {
+    background: #ff7b00;
+}
+
+.btn-equal {
     grid-row: span 2;
     height: 150px;
+    background: white;
 }
 
-/* Background animation */
 @keyframes gradient-animation {
     0% {
       background-position: 0% 50%;
@@ -107,4 +115,4 @@ body {
     100% {
       background-position: 0% 50%;
     }
-  }
+}

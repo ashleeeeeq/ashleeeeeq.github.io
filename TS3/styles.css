@@ -12,9 +12,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(39deg,#4e57c1,#7e4e77);
-    background-size: 360% 360%;
-    animation: gradient-animation 36s ease infinite;
+    background: linear-gradient(280deg,#701850,#52911d,#4565ac,#f684e2,#e15e91);
+    background-size: 300% 300%;
+    animation: gradient-animation 25s ease infinite;
 }
 
 .container {

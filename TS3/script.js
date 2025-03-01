@@ -7,22 +7,6 @@ function clearDisplay() {
     display.value = "0";
 }
 
-// Function to append the value to the display
-function appendValue(value) {
-    if (value === "C") {
-        clearDisplay(); // Call the clearDisplay function
-    } else if (value === "=") {
-        calculateResult(); // Call the calculateResult function
-    } else {
-        if (display.value === "0" && value !== ".") {
-            currentInput = value;
-        } else {
-            currentInput += value;
-        }
-        display.value = currentInput;
-    }
-}
-
 // Performs basic calculations: Addition (+), Subtraction (-), Multiplication (*), and Division (/).
 function calculateResult() {
     try {
@@ -51,6 +35,51 @@ function calculateResult() {
         display.value = "Error";
         currentInput = "";
     }
+}
+
+// Function to append values to the display
+function appendValue(value) {
+    if (value === "C") {
+        clearDisplay(); 
+        return;
+    }
+
+    if (value === "=") {
+        calculateResult(); 
+        return;
+    }
+
+    // Prevent operators from being entered first
+    if (currentInput === "" && "+-*/".includes(value)) {
+        alert("Invalid format. Please enter a number first.");
+        return;
+    }
+
+    // Prevent multiple consecutive operators
+    if ("+-*/".includes(value) && "+-*/".includes(currentInput.slice(-1))) {
+        return;
+    }
+
+    let lastNumber = currentInput.split(/[\+\-\*\/]/).pop(); // Get the last entered number
+    // Prevent multiple dots in a single number
+    if (value === "." && lastNumber.includes(".")) {
+        return; 
+    }
+
+    // If a dot is entered without a preceding number, prepend "0"
+    if (value === "." && (lastNumber === "" || "+-*/".includes(currentInput.slice(-1)))) {
+        value = "0.";
+    }
+
+    // If starting with "0" and entering a number, replace "0"
+    if (currentInput === "0" && !"+-*/".includes(value) && value !== ".") {
+        currentInput = value;
+    } else {
+        currentInput += value;
+    }
+
+    // Update the display
+    display.value = currentInput;
 }
 
 // onClick from HTML file

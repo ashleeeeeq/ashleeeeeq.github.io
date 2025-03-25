@@ -4,6 +4,78 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login and Sign Up</title>
+
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .btn-solid {
+        background-color: #007bff;
+        color: #fff;
+      }
+
+      .btn-gradient {
+        background: linear-gradient(to right, #007bff, #00bfff);
+        color: #fff;
+      }
+
+      .btn-3d {
+        background-color: #007bff;
+        color: #fff;
+        box-shadow: 0 5px 0 #00bfff;
+        transition: all 0.3s;
+      }
+
+      .btn-3d:hover {
+        box-shadow: 0 3px 0 #00bfff;
+        transform: translateY(2px);
+      }
+
+      button:focus {
+        outline: none;
+      }
+
+      button:active {
+        transform: translateY(2px);
+      }
+
+      .btn-gradient:hover {
+        background: linear-gradient(to right, #00bfff, #007bff);
+      }
+
+    </style>
   </head>
 
   <body>
@@ -22,6 +94,13 @@
         </div>
         <div class="form-group"><button type="submit">Sign In</button></div>
       </form>
+    </div>
+
+    <!-- Different buttons with styles (solid, gradient, and with 3d effect) -->
+    <div class="container">
+      <button class="btn-solid">Solid Button</button>
+      <button class="btn-gradient">Gradient Button</button>
+      <button class="btn-3d">3D Button</button>
     </div>
   </body>
 </html>

@@ -1,0 +1,165 @@
+:root {
+  --bg: #313131;
+  --bg2: #202020;
+  --bg3: #111;
+
+  --text: #d9b24f;
+  --text2: #9f7d22;
+  --text3: #ccc;
+  --textRGB: 217, 178, 79;
+  --textRGB2: 159, 125, 34;
+
+  --font: "Roboto Slab", serif;
+  --font2: "Open Sans", sans-serif;
+}
+
+html,
+body {
+  background-color: var(--bg);
+  height: 100%;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.wrapper {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.container {
+  margin: auto;
+  width: 450px;
+  height: 320px;
+  background-color: var(--bg2);
+  box-shadow: 5px 5px 8px 1px #030303;
+  position: relative;
+  overflow: hidden;
+}
+
+.side {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 88px;
+  height: 100%;
+  background: var(--bg3);
+  border-right: 2px solid var(--text);
+}
+
+.title {
+  width: 110px;
+  height: 88px;
+  line-height: 88px;
+  font-family: var(--font);
+  color: var(--text);
+  transform: rotate(270deg);
+  position: absolute;
+  top: 21px;
+  left: -11px;
+  font-size: 18px;
+}
+
+ul {
+  width: 100%;
+  list-style-type: none;
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+li {
+  padding: 2px 0;
+}
+
+.containerContent {
+  width: 360px;
+  height: 320px;
+  position: absolute;
+  top: 0;
+  left: 90px;
+  overflow: hidden;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: var(--text2);
+}
+
+.containerMany {
+  width: 320px;
+  height: 280px;
+  padding: 20px;
+  position: relative;
+}
+
+.outerTitle {
+  position: relative;
+  top: 0;
+  float: left;
+  left: 50%;
+}
+
+.innerTitle {
+  background: var(--bg2);
+  text-align: center;
+  font-family: var(--font);
+  font-size: 18px;
+  color: var(--text);
+  padding: 5px 10px;
+  display: block;
+  float: left;
+  position: relative;
+  top: -20px;
+  left: -50%;
+}
+
+.innerContainer {
+  border: 1px solid var(--text);
+  width: calc(100% - 32px);
+  height: calc(100% - 32px);
+  padding: 15px;
+}
+
+.innerScroll {
+  width: 265px;
+  height: 230px;
+  padding: 10px;
+  overflow: auto;
+  position: relative;
+  top: -20px;
+  background: #303030;
+  text-align: justify;
+  margin: 0;
+  font-family: var(--font2);
+  font-size: 13px;
+  color: var(--text3);
+}
+
+.innerScroll::-webkit-scrollbar {
+  width: 1px;
+}
+
+.innerScroll::-webkit-scrollbar-thumb {
+  background: var(--text);
+}
+
+.innerHeader {
+  font-family: var(--font);
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.innerFlex {
+  display: flex;
+}

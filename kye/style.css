@@ -1,13 +1,13 @@
 :root {
-  --bg: #313131;
-  --bg2: #202020;
-  --bg3: #111;
+  --bg: #fdfcf7;         /* Main ivory background */
+  --bg2: #f9f7f1;        /* Slightly darker ivory for containers */
+  --bg3: #ece8da;        /* Sidebar/light frame background */
 
-  --text: #d9b24f;
-  --text2: #9f7d22;
-  --text3: #ccc;
-  --textRGB: 217, 178, 79;
-  --textRGB2: 159, 125, 34;
+  --text: #6d4e2e;       /* Rich brown for primary text */
+  --text2: #a97449;      /* Warm accent (hover) */
+  --text3: #444;         /* Main body text */
+  --textRGB: 109, 78, 46;
+  --textRGB2: 169, 116, 73;
 
   --font: "Roboto Slab", serif;
   --font2: "Open Sans", sans-serif;
@@ -36,9 +36,10 @@ body {
   width: 450px;
   height: 320px;
   background-color: var(--bg2);
-  box-shadow: 5px 5px 8px 1px #030303;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
+  border: 1px solid #d6d1c4;
 }
 
 .side {
@@ -122,6 +123,7 @@ a:hover {
   position: relative;
   top: -20px;
   left: -50%;
+  border: 1px solid #dcd6c9;
 }
 
 .innerContainer {
@@ -129,6 +131,7 @@ a:hover {
   width: calc(100% - 32px);
   height: calc(100% - 32px);
   padding: 15px;
+  background-color: #fffefb;
 }
 
 .innerScroll {
@@ -138,7 +141,7 @@ a:hover {
   overflow: auto;
   position: relative;
   top: -20px;
-  background: #303030;
+  background: #fbfaf7;
   text-align: justify;
   margin: 0;
   font-family: var(--font2);
@@ -151,7 +154,7 @@ a:hover {
 }
 
 .innerScroll::-webkit-scrollbar-thumb {
-  background: var(--text);
+  background: var(--text2);
 }
 
 .innerHeader {

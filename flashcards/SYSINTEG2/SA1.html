@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Systems Integration and Architecture 2 — Review Sheet </title>
+<title>Systems Integration and Architecture 2 — Review Sheet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -228,7 +228,7 @@
         <div class="subtitle">FA1 / FA2 review sheet</div>
       </div>
       <div class="title-meta">
-        Sheet <strong id="questionCounter">1</strong> of <span id="totalCount">52</span><br>
+        Sheet <strong id="questionCounter">1</strong> of <span id="totalCount">55</span><br>
         Score <strong id="scoreDisplay">0</strong>
       </div>
     </div>
@@ -237,7 +237,7 @@
 
     <div class="controls">
       <label for="jumpInput">Jump to</label>
-      <input type="number" id="jumpInput" min="1" max="52" placeholder="1–52">
+      <input type="number" id="jumpInput" min="1" max="55" placeholder="1–55">
       <button onclick="jumpToQuestion()">Go</button>
       <button onclick="shuffleQuestions()">Shuffle questions</button>
       <label class="toggle">
@@ -321,7 +321,11 @@ const originalQuestionsData = [
   { q: "Which constraint on an integrated architecture is typically NOT negotiable?", options: ["Your internal naming conventions", "Your choice of test framework", "Your own module decomposition", "The partner's authentication scheme and availability window"], correct: "The partner's authentication scheme and availability window" },
   { q: "Which of the following belong in a complete integration point specification?", options: ["Versioning strategy", "The partner's internal class hierarchy", "Synchronicity, error handling, and retry policy", "Authentication and authorization", "Interface operations, inputs, and outputs", "Data format and the semantics of each field"], correct: ["Versioning strategy", "Synchronicity, error handling, and retry policy", "Authentication and authorization", "Interface operations, inputs, and outputs", "Data format and the semantics of each field"] },
   { q: "Which diagram best shows compensating actions when one participant fails mid-process?", options: ["Activity diagram", "Use case diagram", "Class diagram", "State machine for a single object"], correct: "Activity diagram" },
-  { q: "What does an asynchronous design require that a synchronous one does not?", options: ["A faster network", "A larger database", "Correlation of replies, ordering, and duplicate handling"], correct: "Correlation of replies, ordering, and duplicate handling" }
+  { q: "What does an asynchronous design require that a synchronous one does not?", options: ["A faster network", "A larger database", "Correlation of replies, ordering, and duplicate handling"], correct: "Correlation of replies, ordering, and duplicate handling" },
+
+  { q: "McCall's quality model groups quality factors under three perspectives. Which are they?", options: ["Product operation, product revision, product transition", "Design, build, deploy", "Functional, non-functional, domain", "Cost, schedule, scope"], correct: "Product operation, product revision, product transition" },
+  { q: "Which is the most consequential defect to leave in an integration model?", options: ["A misaligned actor symbol", "A missing failure path on a revenue-carrying exchange", "An unnumbered use case", "An inconsistent font in the diagram"], correct: "A missing failure path on a revenue-carrying exchange" },
+  { q: "Which diagram most directly exposes timeout, retry, and idempotency requirements?", options: ["Sequence diagram", "Context diagram", "Deployment diagram", "Class diagram"], correct: "Sequence diagram" }
 ];
 
 let questions = JSON.parse(JSON.stringify(originalQuestionsData));

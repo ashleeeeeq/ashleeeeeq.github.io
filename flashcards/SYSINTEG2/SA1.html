@@ -228,7 +228,7 @@
         <div class="subtitle">FA1 / FA2 review sheet</div>
       </div>
       <div class="title-meta">
-        Sheet <strong id="questionCounter">1</strong> of <span id="totalCount">55</span><br>
+        Sheet <strong id="questionCounter">1</strong> of <span id="totalCount">60</span><br>
         Score <strong id="scoreDisplay">0</strong>
       </div>
     </div>
@@ -237,7 +237,7 @@
 
     <div class="controls">
       <label for="jumpInput">Jump to</label>
-      <input type="number" id="jumpInput" min="1" max="55" placeholder="1–55">
+      <input type="number" id="jumpInput" min="1" max="60" placeholder="1–60">
       <button onclick="jumpToQuestion()">Go</button>
       <button onclick="shuffleQuestions()">Shuffle questions</button>
       <label class="toggle">
@@ -325,7 +325,13 @@ const originalQuestionsData = [
 
   { q: "McCall's quality model groups quality factors under three perspectives. Which are they?", options: ["Product operation, product revision, product transition", "Design, build, deploy", "Functional, non-functional, domain", "Cost, schedule, scope"], correct: "Product operation, product revision, product transition" },
   { q: "Which is the most consequential defect to leave in an integration model?", options: ["A misaligned actor symbol", "A missing failure path on a revenue-carrying exchange", "An unnumbered use case", "An inconsistent font in the diagram"], correct: "A missing failure path on a revenue-carrying exchange" },
-  { q: "Which diagram most directly exposes timeout, retry, and idempotency requirements?", options: ["Sequence diagram", "Context diagram", "Deployment diagram", "Class diagram"], correct: "Sequence diagram" }
+  { q: "Which diagram most directly exposes timeout, retry, and idempotency requirements?", options: ["Sequence diagram", "Context diagram", "Deployment diagram", "Class diagram"], correct: "Sequence diagram" },
+
+  { q: "What does the availability chaining calculation demonstrate?", options: ["That availability improves with more services", "That end-to-end availability is the product of dependencies, so it falls as the chain lengthens", "That availability is unrelated to the number of dependencies", "That redundancy is unnecessary"], correct: "That end-to-end availability is the product of dependencies, so it falls as the chain lengthens" },
+  { q: "A partner changes their interface and consumers discover it in production. This is:", options: ["Versioning neglect", "A testing failure only", "A licensing violation", "A capacity planning failure"], correct: "Versioning neglect" },
+  { q: "Which statement is true of an integrated system but not a standalone one?", options: ["Its availability window is constrained by parties outside your control", "It benefits from a documented process", "It requires a quality focus", "It needs testing before release"], correct: "Its availability window is constrained by parties outside your control" },
+  { q: "In an integrated system, each integration point is a separate trust boundary.", options: ["True", "False"], correct: "True" },
+  { q: "Placing an availability expectation on an external system is only meaningful if:", options: ["It has been agreed with the party that owns that system", "It is documented in your own wiki", "It exceeds your own availability target", "It is expressed as a percentage"], correct: "It has been agreed with the party that owns that system" }
 ];
 
 let questions = JSON.parse(JSON.stringify(originalQuestionsData));

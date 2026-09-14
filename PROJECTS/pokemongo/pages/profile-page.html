@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile | Pokemonix Web Store</title>
+  <link rel="icon" type="image/x-icon" href="/assets/pokemonix-light-logo.ico">
+  <link rel="stylesheet" href="/styles/homepage-default.css" />
+  <link rel="stylesheet" href="/styles/homepage-pokemonix.css" />
+  <link rel="stylesheet" href="/styles/profile-page-style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/e9625646b7.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="nav-bar">
+    <input id="nav-toggle" type="checkbox" checked />
+    <div id="nav-header">
+      <a id="nav-title" href="#" target="_blank"
+        ><img src="https://i.ibb.co/LMPWvdL/pokemonix-light-logo.png" style="width: 50px; height: 50px"></i> <span id="nav-logo-title">Pokemonix</span></a
+      >
+      <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+    </div>
+    <div id="nav-content">
+      <div class="nav-button" onclick="navigateTo('homepage.html')">
+        <i class="fas fa-house-chimney"></i><span>Home</span>
+      </div>
+
+      <div class="nav-button" onclick="navigateTo('cart.html')"> 
+        <i class="fas fa-cart-shopping"></i>
+        <span>Cart</span>
+      </div>
+
+      <div class="nav-button" onclick="navigateTo('transaction.html')">
+        <i class="fas fa-exchange"></i><span>Transactions</span>
+      </div>
+
+      <div class="nav-button" onclick="navigateTo('https://store.pokemongolive.com/offer-redemption')">
+        <i class="fa-solid fas fa-money-bill"></i><span>Code Redemption</span>
+      </div>
+
+      <div class="nav-button" onclick="navigateTo('https://tickets.nianticlabs.com/events/#/eventlisting?appId=pgo')">
+        <i class="fa-solid fas fa-ticket"></i><span>Event Ticketing</span>
+      </div>
+      
+      <div class="nav-button" onclick="navigateTo('profile-page.html')">
+        <i class="fas fa-user"></i><span>Profile</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="profile-container">
+      <div class="profile-header">
+          <div class="profile-left">
+              <div class="profile-img">
+                  <img src="/assets/profile-images/user.png" alt="User Icon" class="user-img">
+              </div>
+              <div class="profile-info">
+                  <h1 id="title-name">User Pikachu</h1>
+                  <span class="title-username">Username</span>
+                  <p class="title">
+                      <img src="/assets/transaction-images/Poke-coin.png" alt="PokeCoins" class="coin-img"> 
+                      0 PokeCoins
+                  </p>
+              </div>
+          </div>
+          <button class="sign-out-btn">Sign Out</button>
+      </div>
+  </div>  
+      
+      <div class="profile-content">
+        <!-- Left Column -->
+        <div class="profile-section">
+          <div class="container">
+            <div class="personal-info">
+              <div class="info-item">
+                <span class="info-label">Full Name</span>
+                <span class="info-value full-name"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">In-Game Name</span>
+                <span class="info-value ign"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">User ID</span>
+                <span class="info-value user-id"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Email</span>
+                <span class="info-value email"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Password</span>
+                <span class="info-value password">*************</span>        
+            </div>
+  
+            <button class="btn-edit">Edit Profile</button>
+  
+            <!-- Edit Profile Pop-up -->
+            <div id="edit-profile-popup" class="popup">
+              <div class="popup-content">
+                  <span class="close-btn">&times;</span>
+                  <h2>Edit Profile</h2>
+                  <label>Full Name</label>
+                  <input type="text" id="edit-name" required>
+                  
+                  <label>In-Game Name</label>
+                  <input type="text" id="edit-ign" required>
+                  
+                  <label>Email</label>
+                  <input type="email" id="edit-email" required>
+                  
+                  <label>Password</label>
+                  <input type="password" id="edit-password">
+                  
+                  <button id="save-profile">Save Changes</button>
+                  <button id="cancel-profile">Cancel</button>
+              </div>
+          </div>        
+            
+            <div class="profile-progress">
+              <h3><i class="fas fa-tasks"></i> Pokémonix Collection Status</h3>
+              <div class="progress-item">
+                <span class="progress-name">PMight and Mastery Box</span>
+                <div class="progress">
+                  <div class="progress-bar" style="width: 10%; background-color: #617c40;"></div>
+                </div>
+              </div>
+              <div class="progress-item">
+                <span class="progress-name">Ultra Raid Box</span>
+                <div class="progress">
+                  <div class="progress-bar" style="width: 5%; background-color: #617c40;"></div>
+                </div>
+              </div>
+              <div class="progress-item">
+                <span class="progress-name">Pokemon GO Fest 2024: Global Ticket</span>
+                <div class="progress">
+                  <div class="progress-bar" style="width: 5%; background-color: #617c40;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+                  
+        <!-- Right Column -->
+        <div class="profile-section">
+          <div class="order-history-container">
+            <div class="order-history-header">
+              <h1>Transaction History</h1>
+            </div>
+
+            <table class="order-history-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Item</th>
+                  <th>Order ID</th>
+                  <th>Transaction Number</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Feb 14, 2025</td>
+                  <td>Might and Mastery Box</td>
+                  <td>P0-20240329-005</td>
+                  <td>TN-20240329-006</td>
+                  <td class="status-input">Completed</td>
+                </tr>
+                <tr>
+                  <td>December 3, 2024</td>
+                  <td>Ultra Raid Box</td>
+                  <td>P0-20241016-003</td>
+                  <td>TN-20241016-004</td>
+                  <td class="status-input">Completed</td>
+                </tr>
+                <tr>
+                  <td>November 02, 2024</td>
+                  <td>Might and Mastery Box</td>
+                  <td>P0-2021102-002</td>
+                  <td>TN-2021102-003</td>
+                  <td class="status-input">Completed</td>
+                </tr>
+              </tbody>
+            </table>
+            <a href="transaction.html" class="view-more">View More <i class="fas fa-arrow-right"></i></a>
+
+            <div class="cart-items-section">
+              <h2>Cart Items</h2>
+              <div class="cart-item">
+                <img src="/assets/profile-images/GO-Rocket-Box.png" alt="Bug Out Ultra Ticket Box" class="cart-item-img">
+                <div class="cart-item-details">
+                  <h3>GO Rocket Box</h3>
+                  <p class="cart-item-type">One Time Only</p>
+                  <p class="cart-item-price">$289.00</p>
+                </div>
+              </div>
+              <div class="cart-item">
+                <img src="/assets/profile-images/Ultra-Raid-Box.png" alt="Bug Out Ultra Ticket Box" class="cart-item-img">
+                <div class="cart-item-details">
+                  <h3>Ultra Raid Box</h3>
+                  <p class="cart-item-type">One Time Only</p>
+                  <p class="cart-item-price">$149.00</p>
+                </div>
+              </div>
+              <a href="cart.html" class="view-more" style = "text-align: right">View More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+          </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer bg-dark text-white py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        
+        <!-- Copyright Section -->
+        <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
+          <p class="copyright-disclaimer mb-0">
+            © 2025 Pokemonix Web Store. The images used are the property of
+            Niantic. This project is for educational purposes only and no
+            copyright infringement is intended.
+          </p>
+        </div>
+  
+        <!-- Image Slots -->
+        <div class="col-md-4 text-center">
+          <div class="d-flex justify-content-center gap-3">
+            <img src="https://i.ibb.co/LMPWvdL/pokemonix-light-logo.png" alt="Pokemonix Logo" class="img-fluid rounded" style="width: 120px; height: 120px; object-fit: cover;">
+            <img src="https://i.ibb.co/ZzBWqHh1/logo-pokemon-removebg-preview.png" alt="Pokemon Go Logo" class="img-fluid rounded" style="width: 120px; height: 80px; object-fit: fit;">
+            <img src="https://i.ibb.co/PGgFKRQY/niantic-logo.png" alt="Niantic Logo" class="img-fluid rounded" style="width: 120px; height: 120px; object-fit: cover;">
+          </div>
+        </div>
+  
+        <!-- Footer Links -->
+        <div class="col-md-4 text-center text-md-end mt-4 mt-md-0">
+          <div class="footer-links">
+            <a href="pages/privacy.html" class="text-white text-decoration-none me-3">Privacy Policy</a>
+            <a href="pages/terms.html" class="text-white text-decoration-none me-3">Terms of Service</a>
+            <a href="pages/contact.html" class="text-white text-decoration-none">Contact Us</a>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </footer>
+
+  <div class="web-loader"></div>
+  <script src="/javascript/default.js"></script>
+  <script src="/javascript/pokemonix.js"></script>
+  <script src="/javascript/profile-page-script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</body>
+</html>

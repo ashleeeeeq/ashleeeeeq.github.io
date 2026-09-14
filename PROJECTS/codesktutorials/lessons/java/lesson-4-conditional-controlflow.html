@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CoDesk — Java Conditional &amp; Control Flow: if-else, switch, loops, and more.">
+  <title>Conditional &amp; Control Flow · Lessons · CoDesk</title>
+
+  <link rel="shortcut icon" type="image/png" href="../../assets/images/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ======= NAVBAR ======= -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../assets/images/logo.png" alt="CoDesk logo">
+        <span>Co<em>Desk</em></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="../../index.html#home">Home</a>
+        <a href="../../index.html#courses">Courses</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#team">Team</a>
+        <a href="../../index.html#contact">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn" data-theme-toggle title="Toggle dark mode">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a href="../../assessments/quiz.html" class="btn btn--primary btn--sm btn--nav">Quiz</a>
+        <button class="icon-btn nav-toggle" aria-label="Open menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-nav">
+    <a href="../../index.html#home">Home</a>
+    <a href="../../index.html#courses">Courses</a>
+    <a href="../../index.html#about">About</a>
+    <a href="../../index.html#team">Team</a>
+    <a href="../../index.html#contact">Contact</a>
+    <hr>
+    <a href="../../assessments/quiz.html">Take the Quiz</a>
+  </div>
+
+  <!-- ======= LESSON LAYOUT ======= -->
+  <div class="container">
+    <div class="lesson-layout" data-course="java" data-lesson="4" data-total="5">
+
+      <!-- sidebar / course nav -->
+      <aside class="lesson-side">
+        <div class="brand-lang"><img src="../../assets/images/Java.png" alt=""> Java</div>
+        <h4>Course lessons</h4>
+        <div class="side-links">
+          <a class="side-link" data-lesson="1" href="lesson-1-introduction.html"><span class="ic">1</span> Introduction to Java</a>
+          <a class="side-link" data-lesson="2" href="lesson-2-variables.html"><span class="ic">2</span> Variables</a>
+          <a class="side-link" data-lesson="3" href="lesson-3-oop.html"><span class="ic">3</span> Object-Oriented Programming</a>
+          <a class="side-link current" data-lesson="4" href="lesson-4-conditional-controlflow.html"><span class="ic">4</span> Conditional &amp; Control Flow</a>
+          <a class="side-link" data-lesson="5" href="lesson-5-access-encapsulation-static.html"><span class="ic">5</span> Access, Encapsulation &amp; Static</a>
+        </div>
+        <div class="side-progress">
+          <div class="row"><span>Track progress</span><span class="count"></span></div>
+          <div class="track"><div class="bar"></div></div>
+        </div>
+      </aside>
+
+      <!-- lesson body -->
+      <main class="lesson-main">
+        <div class="lesson-head">
+          <nav class="breadcrumb">
+            <a href="../../index.html">Home</a><span class="sep">/</span>
+            <a href="../../index.html#courses">Courses</a><span class="sep">/</span>
+            <a href="../../index.html#courses">Java</a><span class="sep">/</span>
+            <span>Lesson 4</span>
+          </nav>
+          <div class="lesson-title-wrap">
+            <div>
+              <h1>Conditional &amp; Control Flow</h1>
+              <div class="lesson-meta">
+                <span>📚 5 lessons</span><span>⏱️ ~15 min</span><span>🎬 1 video</span>
+              </div>
+            </div>
+            <span class="lbl java">Java</span>
+          </div>
+        </div>
+
+        <article class="lesson-content">
+          <p>How do conditionals and control flow work in Java?</p>
+
+          <p>Conditionals and control flow are essential concepts in programming, and Java provides several constructs to control the flow of a program's execution based on certain conditions. Here are some of the most common constructs in Java for conditional and control flow:</p>
+
+          <p>If-else statements: If-else statements allow you to execute a block of code if a certain condition is met or an alternative block of code if the condition is not met. The basic syntax of an if-else statement in Java is as follows:</p>
+
+          <pre class="code-block" data-lang="java">if (condition) {
+    // Code to be executed if the condition is true
+} else {
+    // Code to be executed if the condition is false
+}</pre>
+
+          <p>Switch statements: A switch statement allows you to select one of several blocks of code to execute, depending on the value of a given expression. The basic syntax of a switch statement in Java is as follows:</p>
+
+          <pre class="code-block" data-lang="java">switch (expression) {
+    case value1:
+        // Code to be executed if expression == value1
+        break;
+    case value2:
+        // Code to be executed if expression == value2
+        break;
+    // ...
+    default:
+        // Code to be executed if none of the cases match
+        break;
+}</pre>
+
+          <p><b>Loops:</b> Loops allow you to execute a block of code repeatedly, either a fixed number of times or until a specific condition is met. Java supports three types of loops:</p>
+
+          <p>For loops: A for loop executes a block of code a specified number of times. The basic syntax of a for loop in Java is as follows:</p>
+
+          <pre class="code-block" data-lang="java">for (initialization; condition; update) {
+    // Code to be executed in each iteration
+}</pre>
+
+          <p>While loops: A while loop executes a code block if a particular condition is true. The basic syntax of a while loop in Java is as follows:</p>
+
+          <pre class="code-block" data-lang="java">while (condition) {
+    // Code to be executed as long as the condition is true
+}</pre>
+
+          <p>Do-while loops: A do-while loop is similar to a while loop, but it executes the code block at least once, even if the condition is initially false. The basic syntax of a do-while loop in Java is as follows:</p>
+
+          <pre class="code-block" data-lang="java">do {
+    // Code to be executed at least once
+} while (condition);</pre>
+
+          <p>These constructs are powerful tools for controlling the flow of a program's execution based on certain conditions, and they are essential to writing complex programs in Java.</p>
+
+          <div class="callout"><span class="ic">🏁</span><div><b>Ready to test yourself?</b> This lesson has no assessment — head over to the <a href="../../assessments/quiz.html" style="color:var(--primary);text-decoration:underline">CoDesk Quiz</a> to check your knowledge.</div></div>
+
+          <h3>Watch &amp; learn</h3>
+          <p>To know more about this lesson, you may watch the tutorial video below:</p>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/svz4vi5hF5A" title="Java Conditionals Tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+          <div class="references">
+            <h5>References</h5>
+            <p>Video: <a href="https://www.youtube.com/watch?v=svz4vi5hF5A" target="_blank" rel="noopener">https://www.youtube.com/watch?v=svz4vi5hF5A</a></p>
+          </div>
+        </article>
+
+        <!-- prev / next -->
+        <div class="lesson-nav">
+          <a href="lesson-3-oop.html"><span class="dir">← Previous</span><b>Object-Oriented Programming</b></a>
+          <a class="next hl" href="lesson-5-access-encapsulation-static.html"><span class="dir">Next →</span><b>Access, Encapsulation &amp; Static</b></a>
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding:26px 0">
+        <span>Updated September 2026 · <b style="color:#fff">CoDesk</b>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+  <script src="../../assets/js/lesson.js"></script>
+</body>
+</html>

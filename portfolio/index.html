@@ -6,7 +6,7 @@
 <title>Janna Ashley H. Quiban — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@700;800;900&family=Just+Me+Again+Down+Here&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=10">
+<link rel="stylesheet" href="styles.css?v=12">
 <noscript><style>.splash, .splash-1, .splash-2{display:none;}</style></noscript>
 </head>
 <body>
@@ -168,33 +168,61 @@
 
   <section id="certifications">
     <div class="wrap">
-      <p class="sec-label hand">certifications</p>
+      <p class="sec-label hand">certifications & badges</p>
       <svg class="squiggle" viewBox="0 0 90 12"><path d="M2 6c14-6 28-6 42 0s28 6 42 0"/></svg>
 
-      <div class="cert-grid reveal">
-        <div class="cert-card">
-          <span class="ttl">PMI Project Management Ready™</span>
-          <span class="yr">2026</span>
+      <div class="cert-tabs reveal">
+        <button class="cert-tab certs active" data-group="certs" aria-pressed="true">📜 certificates</button>
+        <button class="cert-tab badges" data-group="badges" aria-pressed="false">🏅 badges</button>
+      </div>
+
+      <div class="cert-group certs" data-group="certs">
+        <div class="cert-grid">
+          <div class="cert-card">
+            <span class="ttl">IT Specialist - Python</span>
+            <span class="issuer">Certiport, a Pearson VUE business</span>
+            <span class="date">issued Feb 2025</span>
+          </div>
+          <div class="cert-card">
+            <span class="ttl">Cisco Certified Support Technician Networking (CCST Networking)</span>
+            <span class="issuer">Cisco · lifetime</span>
+            <span class="date">issued Feb 2025</span>
+          </div>
+          <div class="cert-card">
+            <span class="ttl">PMI Project Management Ready™</span>
+            <span class="issuer">Project Management Institute</span>
+            <span class="date">expires Mar 2031</span>
+          </div>
         </div>
-        <div class="cert-card">
-          <span class="ttl">DevNet Associate</span>
-          <span class="yr">2026</span>
-        </div>
-        <div class="cert-card">
-          <span class="ttl">Linux Essentials</span>
-          <span class="yr">2025</span>
-        </div>
-        <div class="cert-card">
-          <span class="ttl">IT Specialist in Python</span>
-          <span class="yr">2025</span>
-        </div>
-        <div class="cert-card">
-          <span class="ttl">Cisco Certified Support Technician Networking</span>
-          <span class="yr">2025</span>
-        </div>
-        <div class="cert-card">
-          <span class="ttl">CCNA: Enterprise Networking, Security &amp; Automation</span>
-          <span class="yr">2025</span>
+      </div>
+
+      <div class="cert-group badges hidden" data-group="badges">
+        <div class="cert-grid">
+          <div class="cert-card">
+            <span class="ttl">CCNA: Introduction to Networks</span>
+            <span class="issuer">Cisco</span>
+            <span class="date">issued Feb 2025</span>
+          </div>
+          <div class="cert-card">
+            <span class="ttl">CCNA: Switching, Routing, and Wireless Essentials</span>
+            <span class="issuer">Cisco</span>
+            <span class="date">issued Mar 2025</span>
+          </div>
+          <div class="cert-card">
+            <span class="ttl">CCNA: Enterprise Networking, Security, and Automation</span>
+            <span class="issuer">Cisco</span>
+            <span class="date">issued Nov 2025</span>
+          </div>
+          <div class="cert-card">
+            <span class="ttl">Linux Essentials</span>
+            <span class="issuer">Cisco</span>
+            <span class="date">issued Dec 2025</span>
+          </div>
+          <div class="cert-card">
+            <span class="ttl">DevNet Associate</span>
+            <span class="issuer">Cisco</span>
+            <span class="date">issued Mar 2026</span>
+          </div>
         </div>
       </div>
     </div>
@@ -264,6 +292,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=8"></script>
+<script src="script.js?v=9"></script>
 </body>
 </html>

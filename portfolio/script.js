@@ -161,6 +161,26 @@ if ('IntersectionObserver' in window && sections.length) {
   sections.forEach((section) => navObserver.observe(section));
 }
 
+// Interactive certificates / badges tabs: switching between the two
+// groups recolors each tab per its category (see styles.css).
+(function initCertTabs() {
+  const tabs = document.querySelectorAll('.cert-tab');
+  const groups = document.querySelectorAll('.cert-group');
+  if (!tabs.length || !groups.length) return;
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const name = tab.dataset.group;
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-pressed', String(on));
+      });
+      groups.forEach((g) => g.classList.toggle('hidden', g.dataset.group !== name));
+    });
+  });
+})();
+
 // Fades elements marked with .reveal up into place the first time
 // they enter the viewport. Respects prefers-reduced-motion via CSS.
 const revealTargets = document.querySelectorAll('.reveal');

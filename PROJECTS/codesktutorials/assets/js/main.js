@@ -120,13 +120,42 @@
     };
     tick();
   }
+
+  /* ---------- Course header: jump to a course + flash it ---------- */
+  $$('.course-header__btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const target = $(btn.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.classList.remove('flash');
+      void target.offsetWidth;
+      target.classList.add('flash');
+      btn.classList.add('active');
+      $$('.course-header__btn').forEach((b) => { if (b !== btn) b.classList.remove('active'); });
+    });
+  });
+
+  /* ---------- Course card: expandable curriculum panel ---------- */
+  $$('.curriculum-toggle').forEach((btn) => {
+    const panel = btn.nextElementSibling;
+    if (!panel || !panel.classList.contains('curriculum-panel')) return;
+    const label = btn.querySelector('span');
+
+    btn.addEventListener('click', () => {
+      const open = panel.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (label) label.textContent = open ? 'Hide curriculum' : 'View full curriculum';
+    });
+  });
 })();
 
 /* ==========================================================
    Confetti (lightweight, dependency-free)
    ========================================================== */
 function burstConfetti() {
-  const colors = ['#6366f1', '#8b5cf6', '#f59e0b', '#10b981', '#ec4899', '#f97316'];
+  const colors = ['#f5c542', '#fbe49a', '#2b3a4c', '#3b1e2e', '#ffffff'];
   const count = 110;
   const root = document.documentElement;
   for (let i = 0; i < count; i++) {

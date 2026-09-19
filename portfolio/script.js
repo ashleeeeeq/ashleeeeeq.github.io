@@ -161,6 +161,20 @@ if ('IntersectionObserver' in window && sections.length) {
   sections.forEach((section) => navObserver.observe(section));
 }
 
+// Folder tabs (Projects section): purely CSS now (see .folder-group
+// / .tab / .band in styles.css) — each tab is glued to its own
+// panel and locks into the shared row via sticky positioning, no JS
+// needed for that. This just makes each tab clickable, jumping to
+// its panel.
+(function initFolderTabs() {
+  document.querySelectorAll('.tab[data-target]').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = document.getElementById(tab.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+})();
+
 // Interactive certificates / badges tabs: switching between the two
 // groups recolors each tab per its category (see styles.css).
 (function initCertTabs() {

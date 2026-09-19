@@ -173,7 +173,7 @@ section{padding:70px 0;}
 .b5{background:#fff; border-radius:48% 52% 58% 42% / 52% 48% 52% 48%;}
 .b6{background:var(--purple); color:#fff; border-radius:60% 40% 44% 56% / 48% 52% 48% 52%;}
 
-/* ---------- WORK (colored bands) ---------- */
+/* ---------- WORK (folder tabs) ---------- */
 .work-head{text-align:center; margin-bottom:10px;}
 .work-title{
   font-size:clamp(48px,9vw,88px); line-height:0.9; margin:14px 0 20px;
@@ -184,47 +184,85 @@ section{padding:70px 0;}
   padding:12px 22px; font-size:14px; transform:rotate(-1.4deg);
   box-shadow:2px 4px 0 rgba(28,28,26,0.15); margin-bottom:8px;
 }
-.work-stack{position:relative;}
-.folder{position:sticky; top:62px;}
-.tab-bar{height:44px; display:flex; align-items:flex-end;}
-.tab{
-  display:inline-block; font-family:'DM Mono', monospace; font-size:12px; font-weight:700;
-  padding:11px 24px 11px 28px; color:#fff; white-space:nowrap;
-  clip-path:polygon(16px 0, 100% 0, calc(100% - 16px) 100%, 0 100%);
-}
-.tab-first{clip-path:polygon(0 0, 100% 0, calc(100% - 16px) 100%, 0 100%); padding-left:20px;}
+
 .tab-blue{background:var(--blue);}
 .tab-ink{background:var(--ink);}
 .tab-yellow{background:var(--yellow); color:var(--ink);}
-.band{
-  padding:52px 28px; min-height:72vh;
-  display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center;
-  box-shadow:0 18px 36px rgba(28,28,26,0.18);
-}
-.band-tag{
-  display:inline-flex; align-items:center; gap:8px;
-  font-family:'DM Mono', monospace; font-size:12px; font-weight:600;
-  padding:8px 16px; border-radius:999px; background:rgba(255,255,255,0.35); margin-bottom:18px;
-}
-.band h3{font-family:'Inter', sans-serif; font-weight:700; font-size:34px; margin:0 0 12px;}
-.band p{font-size:15px; margin:0 0 18px; max-width:44ch; opacity:0.92;}
-.band .tags{display:flex; gap:8px; flex-wrap:wrap;}
-.band .tags span{
-  font-family:'DM Mono', monospace; font-size:11.5px; padding:5px 11px;
-  border-radius:999px; background:rgba(255,255,255,0.3);
-}
-.band-shot{
-  aspect-ratio:16/11; border:3px solid var(--ink); background:#fff;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'DM Mono', monospace; font-size:12px; color:rgba(28,28,26,0.4);
-}
+.tab-coral{background:var(--coral); color:#fff;}
+.tab-mint{background:var(--mint); color:#fff;}
+.tab-purple{background:var(--purple); color:#fff;}
+
 .band-blue{background:var(--blue); color:#fff;}
 .band-ink{background:var(--ink); color:var(--paper);}
 .band-yellow{background:var(--yellow); color:var(--ink);}
+.band-coral{background:var(--coral); color:#fff;}
+.band-mint{background:var(--mint); color:#fff;}
+.band-purple{background:var(--purple); color:#fff;}
+
+/* folder tabs — each project is its own sticky group (tab + panel
+   glued together), and EVERY group uses the SAME sticky offset
+   (top:62px, right under the nav). Before a group's turn, it just
+   sits in normal flow, so its tab appears attached to the top of
+   its own panel, wherever that panel naturally falls on the page.
+   Once scrolling brings a group up to top:62px, it locks there —
+   permanently, since nothing after it shares that same y position
+   for its TAB (each tab sits at its own fixed horizontal slot via
+   inline `margin-left`, so tabs never collide) — while that group's
+   full-width panel slides in above and covers the previous one.
+   Net effect: tabs accumulate left-to-right into a single row that
+   never resets, while panels keep stacking underneath it. */
+.work-stack{position:relative;}
+.folder-group{position:sticky; top:62px;}
+
+.tab{
+  display:inline-flex; align-items:center; gap:8px;
+  width:200px; box-sizing:border-box;
+  font-family:'DM Mono', monospace; font-size:12px; font-weight:700;
+  letter-spacing:0.03em; text-transform:uppercase;
+  padding:14px 20px 14px 24px; color:#fff; cursor:pointer;
+  clip-path:polygon(16px 0, 100% 0, calc(100% - 16px) 100%, 0 100%);
+  box-shadow:0 4px 10px rgba(28,28,26,0.18);
+}
+.tab .ftab-icon{font-size:11px;}
+@media(max-width:900px){
+  .tab{margin-left:0 !important; width:auto;}
+}
+
+.band{
+  width:100%; margin:0; padding:70px 60px;
+  min-height:80vh;
+  display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;
+  box-shadow:0 18px 36px rgba(28,28,26,0.18);
+}
+.band-date{
+  font-family:'DM Mono', monospace; font-size:12.5px; font-weight:700;
+  letter-spacing:0.04em; opacity:0.8; margin:0 0 18px;
+}
+.band-title{
+  font-family:'Inter', sans-serif; font-weight:800; font-size:clamp(40px,6vw,64px);
+  line-height:1; margin:0 0 22px;
+}
+.band-desc{font-size:16px; line-height:1.5; margin:0 0 26px; max-width:42ch; opacity:0.92;}
+.band-view{
+  display:inline-block; font-family:'DM Mono', monospace; font-size:13px; font-weight:700;
+  letter-spacing:0.03em; text-transform:uppercase;
+  border-bottom:2px solid currentColor; padding-bottom:4px;
+}
+.band-tags-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:60px;}
+.band-tags-row span{
+  font-family:'DM Mono', monospace; font-size:11px; font-weight:700; text-transform:uppercase;
+  padding:9px 16px; border-radius:8px; background:rgba(28,28,26,0.85); color:#fff;
+}
+.band-shot{
+  aspect-ratio:16/11; border:3px solid var(--ink); background:rgba(255,255,255,0.5);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'DM Mono', monospace; font-size:12px; color:rgba(28,28,26,0.45);
+}
+@media(max-width:900px){
+  .band{grid-template-columns:1fr; padding:44px 24px;}
+}
 @media(max-width:760px){
-  .band{grid-template-columns:1fr;}
-  .folder{position:static;}
-  .tab{margin-left:0 !important;}
+  .folder-group{position:static !important;} /* sticky stack is a desktop effect; mobile scrolls normally */
 }
 
 /* ---------- EDUCATION ---------- */

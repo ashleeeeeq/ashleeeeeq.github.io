@@ -11,7 +11,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
@@ -59,13 +59,9 @@
 
   <!-- ======= HERO ======= -->
   <header class="hero" id="home">
-    <span class="hero-blob hero-blob--1"></span>
-    <span class="hero-blob hero-blob--2"></span>
-    <span class="hero-blob hero-blob--3"></span>
-
     <div class="container">
       <div class="hero-copy">
-        <span class="hero-badge"><span class="dot"></span> Free online programming tutorials</span>
+        <span class="hero-badge"><span class="dot"></span> CODESK · BEGINNER STUDY TRACK</span>
         <h1>
           Learn <span class="gradient-text" data-type="JavaScript|Java|C#">JavaScript</span><span class="hero-cursor"></span><br>
           the fun, simple way.
@@ -118,12 +114,36 @@
     </div>
   </header>
 
+  <!-- ======= COURSE HEADER ======= -->
+  <section class="course-header">
+    <div class="container">
+      <p class="course-header__label">Pick a course</p>
+      <div class="course-header__bar">
+        <a class="course-header__btn js" href="#javascript">
+          <img src="./assets/images/JavaScript.png" alt="JavaScript logo">
+          <b>JavaScript</b>
+          <span class="tag">5 lessons</span>
+        </a>
+        <a class="course-header__btn java" href="#java">
+          <img src="./assets/images/Java.png" alt="Java logo">
+          <b>Java</b>
+          <span class="tag">5 lessons</span>
+        </a>
+        <a class="course-header__btn csharp" href="#csharp">
+          <img src="./assets/images/csharp.png" alt="C# logo">
+          <b>C#</b>
+          <span class="tag">5 lessons</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- ======= COURSES ======= -->
   <section class="section section--soft" id="courses">
     <div class="container">
       <div class="head-row">
         <div>
-          <span class="eyebrow">Our Courses</span>
+          <span class="eyebrow">01 · Our Courses</span>
           <h2 class="section-title">Start Your Coding Journey</h2>
           <p class="section-sub" style="margin-bottom:0">Three beginner-friendly tracks with 5 lessons each,
             plus assessments and a quiz. Progress is saved right in your browser.</p>
@@ -133,104 +153,144 @@
       <div class="course-grid">
 
         <!-- JavaScript -->
-        <div class="course-card js reveal" data-course-widget="javascript" data-total="5">
-          <div class="course-card__head">
-            <div class="course-card__logo"><img src="./assets/images/JavaScript.png" alt="JavaScript logo"></div>
-            <div>
-              <h3>JavaScript</h3>
-              <small>5 lessons · 3 assessments · beginner friendly</small>
-            </div>
-          </div>
+        <div class="course-card js reveal" id="javascript" data-course-widget="javascript" data-total="5">
           <div class="course-card__body">
-          <p class="desc">Make web pages come alive. Learn the language that runs the browser —
-            from your very first statement to arrays and loops.</p>
 
-          <div class="lesson-list">
-            <a href="lessons/javascript/lesson-1-introduction.html" data-lesson="1"><span class="num">1</span> Introduction &amp; DOM Basics<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="assessments/assessment-9-js-introduction.html" class="assess-item"><span class="ic">📝</span> Assessment<span class="arrow">→</span></a>
-            <a href="lessons/javascript/lesson-2-conditionals.html" data-lesson="2"><span class="num">2</span> Conditionals<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="assessments/assessment-6-js-conditionals.html" class="assess-item"><span class="ic">📝</span> Assessment<span class="arrow">→</span></a>
-            <a href="lessons/javascript/lesson-3-functions.html" data-lesson="3"><span class="num">3</span> Functions<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="assessments/assessment-5-js-functions.html" class="assess-item"><span class="ic">📝</span> Assessment<span class="arrow">→</span></a>
-            <a href="lessons/javascript/lesson-4-arrays.html" data-lesson="4"><span class="num">4</span> Arrays<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="lessons/javascript/lesson-5-loops.html" data-lesson="5"><span class="num">5</span> Loops<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="assessments/quiz.html" class="quiz-item"><span class="ic">🏆</span> Take the Quiz<span class="arrow">→</span></a>
-          </div>
+            <div class="course-card__top">
+              <div class="course-card__logo"><img src="./assets/images/JavaScript.png" alt="JavaScript logo"></div>
+            <h3 class="course-card__title">JavaScript</h3>
+            </div>
+            <p class="desc">Make web pages come alive. Learn the language that runs the browser —
+              from your very first statement to arrays and loops.</p>
 
-          <div class="course-progress">
-            <div class="row"><span>Your progress</span><span class="count">0/5</span></div>
-            <div class="track"><div class="bar"></div></div>
-          </div>
+            <div class="course-meta">
+              <span>5 lessons</span>
+              <span class="sep"></span>
+              <span>3 assessments</span>
+            </div>
 
-          <a href="lessons/javascript/lesson-1-introduction.html" class="btn btn--primary btn--block">Start Learning</a>
+            <div class="course-progress">
+              <div class="row"><span>Your progress</span><span class="count">0/5</span></div>
+              <div class="track"><div class="bar"></div></div>
+            </div>
+
+            <button class="curriculum-toggle" type="button" aria-expanded="false">
+              <span>View full curriculum</span>
+              <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+
+            <div class="curriculum-panel">
+              <div class="lesson-list-wrap">
+                <div class="lesson-list">
+                  <a href="lessons/javascript/lesson-1-introduction.html" data-lesson="1"><span class="num">1</span> Introduction &amp; DOM Basics<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="assessments/assessment-9-js-introduction.html" class="assess-item"><span class="ic">A</span> Assessment<span class="arrow">→</span></a>
+                  <a href="lessons/javascript/lesson-2-conditionals.html" data-lesson="2"><span class="num">2</span> Conditionals<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="assessments/assessment-6-js-conditionals.html" class="assess-item"><span class="ic">A</span> Assessment<span class="arrow">→</span></a>
+                  <a href="lessons/javascript/lesson-3-functions.html" data-lesson="3"><span class="num">3</span> Functions<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="assessments/assessment-5-js-functions.html" class="assess-item"><span class="ic">A</span> Assessment<span class="arrow">→</span></a>
+                  <a href="lessons/javascript/lesson-4-arrays.html" data-lesson="4"><span class="num">4</span> Arrays<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="lessons/javascript/lesson-5-loops.html" data-lesson="5"><span class="num">5</span> Loops<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="assessments/quiz.html" class="quiz-item"><span class="ic">Q</span> Take the Quiz<span class="arrow">→</span></a>
+                </div>
+              </div>
+            </div>
+
+            <a href="lessons/javascript/lesson-1-introduction.html" class="btn btn--primary btn--block">Start Learning</a>
           </div>
         </div>
 
         <!-- Java -->
-        <div class="course-card java reveal" data-course-widget="java" data-total="5">
-          <div class="course-card__head">
-            <div class="course-card__logo"><img src="./assets/images/Java.png" alt="Java logo"></div>
-            <div>
-              <h3>Java</h3>
-              <small>5 lessons · 4 assessments · beginner friendly</small>
-            </div>
-          </div>
+        <div class="course-card java reveal" id="java" data-course-widget="java" data-total="5">
           <div class="course-card__body">
-          <p class="desc">Go object-oriented. Master the classic language used in everything from
-            Android apps to enterprise backends.</p>
 
-          <div class="lesson-list">
-            <a href="lessons/java/lesson-1-introduction.html" data-lesson="1"><span class="num">1</span> Introduction to Java<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="assessments/assessment-1-java-introduction.html" class="assess-item"><span class="ic">📝</span> Assessment<span class="arrow">→</span></a>
-            <a href="lessons/java/lesson-2-variables.html" data-lesson="2"><span class="num">2</span> Variables<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="assessments/assessment-4-java-variables.html" class="assess-item"><span class="ic">📝</span> Assessment<span class="arrow">→</span></a>
-            <a href="lessons/java/lesson-3-oop.html" data-lesson="3"><span class="num">3</span> Object-Oriented Programming<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="assessments/assessment-8-java-oop.html" class="assess-item"><span class="ic">📝</span> Assessment<span class="arrow">→</span></a>
-            <a href="lessons/java/lesson-4-conditional-controlflow.html" data-lesson="4"><span class="num">4</span> Conditionals &amp; Control Flow<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="lessons/java/lesson-5-access-encapsulation-static.html" data-lesson="5"><span class="num">5</span> Access, Encapsulation &amp; Static<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="assessments/assessment-7-java-access-encapsulation-static.html" class="assess-item"><span class="ic">📝</span> Assessment<span class="arrow">→</span></a>
-            <a href="assessments/quiz.html" class="quiz-item"><span class="ic">🏆</span> Take the Quiz<span class="arrow">→</span></a>
-          </div>
+            <div class="course-card__top">
+              <div class="course-card__logo"><img src="./assets/images/Java.png" alt="Java logo"></div>
+            <h3 class="course-card__title">Java</h3>
+            </div>
+            <p class="desc">Go object-oriented. Master the classic language used in everything from
+              Android apps to enterprise backends.</p>
 
-          <div class="course-progress">
-            <div class="row"><span>Your progress</span><span class="count">0/5</span></div>
-            <div class="track"><div class="bar"></div></div>
-          </div>
+            <div class="course-meta">
+              <span>5 lessons</span>
+              <span class="sep"></span>
+              <span>4 assessments</span>
+            </div>
 
-          <a href="lessons/java/lesson-1-introduction.html" class="btn btn--primary btn--block">Start Learning</a>
+            <div class="course-progress">
+              <div class="row"><span>Your progress</span><span class="count">0/5</span></div>
+              <div class="track"><div class="bar"></div></div>
+            </div>
+
+            <button class="curriculum-toggle" type="button" aria-expanded="false">
+              <span>View full curriculum</span>
+              <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+
+            <div class="curriculum-panel">
+              <div class="lesson-list-wrap">
+                <div class="lesson-list">
+                  <a href="lessons/java/lesson-1-introduction.html" data-lesson="1"><span class="num">1</span> Introduction to Java<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="assessments/assessment-1-java-introduction.html" class="assess-item"><span class="ic">A</span> Assessment<span class="arrow">→</span></a>
+                  <a href="lessons/java/lesson-2-variables.html" data-lesson="2"><span class="num">2</span> Variables<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="assessments/assessment-4-java-variables.html" class="assess-item"><span class="ic">A</span> Assessment<span class="arrow">→</span></a>
+                  <a href="lessons/java/lesson-3-oop.html" data-lesson="3"><span class="num">3</span> Object-Oriented Programming<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="assessments/assessment-8-java-oop.html" class="assess-item"><span class="ic">A</span> Assessment<span class="arrow">→</span></a>
+                  <a href="lessons/java/lesson-4-conditional-controlflow.html" data-lesson="4"><span class="num">4</span> Conditionals &amp; Control Flow<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="lessons/java/lesson-5-access-encapsulation-static.html" data-lesson="5"><span class="num">5</span> Access, Encapsulation &amp; Static<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="assessments/assessment-7-java-access-encapsulation-static.html" class="assess-item"><span class="ic">A</span> Assessment<span class="arrow">→</span></a>
+                  <a href="assessments/quiz.html" class="quiz-item"><span class="ic">Q</span> Take the Quiz<span class="arrow">→</span></a>
+                </div>
+              </div>
+            </div>
+
+            <a href="lessons/java/lesson-1-introduction.html" class="btn btn--primary btn--block">Start Learning</a>
           </div>
         </div>
 
         <!-- C# -->
-        <div class="course-card csharp reveal" data-course-widget="csharp" data-total="5">
-          <div class="course-card__head">
-            <div class="course-card__logo"><img src="./assets/images/csharp.png" alt="C# logo"></div>
-            <div>
-              <h3>C#</h3>
-              <small>5 lessons · 2 assessments · beginner friendly</small>
-            </div>
-          </div>
+        <div class="course-card csharp reveal" id="csharp" data-course-widget="csharp" data-total="5">
           <div class="course-card__body">
-          <p class="desc">From .NET to Unity games — C# is simple, modern and object-oriented.
-            Start with the classics: types, conditionals, methods, arrays &amp; loops.</p>
 
-          <div class="lesson-list">
-            <a href="lessons/csharp/lesson-1-introduction.html" data-lesson="1"><span class="num">1</span> Introduction to C#<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="assessments/assessment-2-csharp-introduction.html" class="assess-item"><span class="ic">📝</span> Assessment<span class="arrow">→</span></a>
-            <a href="lessons/csharp/lesson-2-datatypes-variables.html" data-lesson="2"><span class="num">2</span> Data Types &amp; Variables<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="assessments/assessment-3-csharp-variables.html" class="assess-item"><span class="ic">📝</span> Assessment<span class="arrow">→</span></a>
-            <a href="lessons/csharp/lesson-3-logic-conditionals.html" data-lesson="3"><span class="num">3</span> Logic &amp; Conditionals<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="lessons/csharp/lesson-4-methods.html" data-lesson="4"><span class="num">4</span> Methods<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="lessons/csharp/lesson-5-arrays-loops.html" data-lesson="5"><span class="num">5</span> Arrays &amp; Loops<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
-            <a href="assessments/quiz.html" class="quiz-item"><span class="ic">🏆</span> Take the Quiz<span class="arrow">→</span></a>
+            <div class="course-card__top">
+              <div class="course-card__logo"><img src="./assets/images/csharp.png" alt="C# logo"></div>
+            <h3 class="course-card__title">C#</h3>
+            </div>
+            <p class="desc">From .NET to Unity games — C# is simple, modern and object-oriented.
+              Start with the classics: types, conditionals, methods, arrays &amp; loops.</p>
+
+            <div class="course-meta">
+              <span>5 lessons</span>
+              <span class="sep"></span>
+              <span>2 assessments</span>
+            </div>
+
+            <div class="course-progress">
+              <div class="row"><span>Your progress</span><span class="count">0/5</span></div>
+              <div class="track"><div class="bar"></div></div>
+            </div>
+
+            <button class="curriculum-toggle" type="button" aria-expanded="false">
+              <span>View full curriculum</span>
+              <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+
+            <div class="curriculum-panel">
+              <div class="lesson-list-wrap">
+                <div class="lesson-list">
+                  <a href="lessons/csharp/lesson-1-introduction.html" data-lesson="1"><span class="num">1</span> Introduction to C#<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="assessments/assessment-2-csharp-introduction.html" class="assess-item"><span class="ic">A</span> Assessment<span class="arrow">→</span></a>
+                  <a href="lessons/csharp/lesson-2-datatypes-variables.html" data-lesson="2"><span class="num">2</span> Data Types &amp; Variables<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="assessments/assessment-3-csharp-variables.html" class="assess-item"><span class="ic">A</span> Assessment<span class="arrow">→</span></a>
+                  <a href="lessons/csharp/lesson-3-logic-conditionals.html" data-lesson="3"><span class="num">3</span> Logic &amp; Conditionals<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="lessons/csharp/lesson-4-methods.html" data-lesson="4"><span class="num">4</span> Methods<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="lessons/csharp/lesson-5-arrays-loops.html" data-lesson="5"><span class="num">5</span> Arrays &amp; Loops<span class="arrow">→</span><span class="check" style="display:none">✓</span></a>
+                  <a href="assessments/quiz.html" class="quiz-item"><span class="ic">Q</span> Take the Quiz<span class="arrow">→</span></a>
+                </div>
+              </div>
+            </div>
+
+            <a href="lessons/csharp/lesson-1-introduction.html" class="btn btn--primary btn--block">Start Learning</a>
           </div>
-
-          <div class="course-progress">
-            <div class="row"><span>Your progress</span><span class="count">0/5</span></div>
-            <div class="track"><div class="bar"></div></div>
-          </div>
-
-          <a href="lessons/csharp/lesson-1-introduction.html" class="btn btn--primary btn--block">Start Learning</a>
         </div>
 
       </div>
@@ -241,29 +301,29 @@
   <section class="section" id="steps">
     <div class="container">
       <div class="center">
-        <span class="eyebrow">How it works</span>
+        <span class="eyebrow">02 · Method</span>
         <h2 class="section-title">Four steps to your first programs</h2>
         <p class="section-sub">No sign-up, no gimmicks — just open a lesson and start coding.</p>
       </div>
 
       <div class="steps-grid">
         <div class="step-card reveal">
-          <div class="ico ico--indigo">📘</div>
+          <div class="ico ico--indigo">READ</div>
           <h3>Read the lesson</h3>
           <p>Short, focused explanations in plain English with real code examples.</p>
         </div>
         <div class="step-card reveal">
-          <div class="ico ico--amber">🎬</div>
+          <div class="ico ico--amber">WATCH</div>
           <h3>Watch the video</h3>
           <p>Each lesson links a hand-picked tutorial video to reinforce what you read.</p>
         </div>
         <div class="step-card reveal">
-          <div class="ico ico--rose">📝</div>
+          <div class="ico ico--rose">TRY</div>
           <h3>Take the assessment</h3>
           <p>Fill in the missing code and get instant feedback — try until you nail it.</p>
         </div>
         <div class="step-card reveal">
-          <div class="ico ico--emerald">🏆</div>
+          <div class="ico ico--emerald">TEST</div>
           <h3>Beat the quiz</h3>
           <p>Put it all together in the 20-question CoDesk quiz and watch the confetti.</p>
         </div>
@@ -278,7 +338,7 @@
         <img src="./assets/images/about-us-img.png" alt="Learning with CoDesk" style="border-radius:22px; box-shadow:var(--shadow-lg); width:100%">
       </div>
       <div class="reveal">
-        <span class="eyebrow">About us</span>
+        <span class="eyebrow">03 · About us</span>
         <h2 class="section-title">We offer the best online programming tutorials</h2>
         <p class="section-sub">
           Web-based programming tutorials are gaining popularity among students for building programming skills.
@@ -286,15 +346,15 @@
         </p>
         <div class="about-list">
           <div style="display:flex; gap:14px; align-items:flex-start; padding:16px 18px; background:var(--card); border:1px solid var(--line); border-radius:14px; margin-bottom:12px">
-            <div class="ico ico--indigo" style="width:42px;height:42px;flex:none;margin:0;font-size:1.1rem">🎯</div>
+            <div class="ico ico--indigo" style="width:42px;height:42px;flex:none;margin:0;font-family:var(--font-mono);font-size:.85rem;letter-spacing:.08em">01</div>
             <p style="font-size:.95rem"><b style="color:var(--ink)">Improve programming skills.</b><br>Empower individuals to use coding as a tool for creative, innovative solutions.</p>
           </div>
           <div style="display:flex; gap:14px; align-items:flex-start; padding:16px 18px; background:var(--card); border:1px solid var(--line); border-radius:14px; margin-bottom:12px">
-            <div class="ico ico--amber" style="width:42px;height:42px;flex:none;margin:0;font-size:1.1rem">⭐</div>
+            <div class="ico ico--amber" style="width:42px;height:42px;flex:none;margin:0;font-family:var(--font-mono);font-size:.85rem;letter-spacing:.08em">02</div>
             <p style="font-size:.95rem"><b style="color:var(--ink)">Set a new standard of excellence.</b><br>We are here to be the best source of programming tutorials for everyone.</p>
           </div>
           <div style="display:flex; gap:14px; align-items:flex-start; padding:16px 18px; background:var(--card); border:1px solid var(--line); border-radius:14px">
-            <div class="ico ico--emerald" style="width:42px;height:42px;flex:none;margin:0;font-size:1.1rem">🤝</div>
+            <div class="ico ico--emerald" style="width:42px;height:42px;flex:none;margin:0;font-family:var(--font-mono);font-size:.85rem;letter-spacing:.08em">03</div>
             <p style="font-size:.95rem"><b style="color:var(--ink)">User-friendly by design.</b><br>Easy-to-follow tutorials that make coding accessible to people of every level.</p>
           </div>
         </div>
@@ -307,7 +367,7 @@
   <section class="section" id="team">
     <div class="container">
       <div class="center">
-        <span class="eyebrow">The team</span>
+        <span class="eyebrow">04 · The team</span>
         <h2 class="section-title">Meet the CoDesk crew</h2>
         <p class="section-sub">ICT students who believed a different mode of learning was possible.</p>
       </div>
@@ -343,7 +403,7 @@
         </div>
         <div class="team-card team-add reveal">
           <div style="padding:24px 10px">
-            <div class="ico ico--violet" style="width:54px;height:54px;margin:0 auto 14px;font-size:1.5rem">🚀</div>
+            <div class="ico ico--violet" style="width:54px;height:54px;margin:0 auto 14px;font-size:1.4rem">+</div>
             <h3>Be part of us!</h3>
             <p>Passionate about teaching code? Join the CoDesk team.</p>
           </div>

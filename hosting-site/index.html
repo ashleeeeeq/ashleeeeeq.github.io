@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Janna Ashley H. Quiban</title>
+<meta name="description" content="Portfolio and project index of Janna Ashley H. Quiban — designer-minded developer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Handjet:wght@700;800;900&family=Just+Me+Again+Down+Here&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f8f4ea; --ink:#1c1c1a; --yellow:#ffcf49; --mint:#5fd0a0;}
+*{box-sizing:border-box;}
+body{
+  margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+  background:repeating-linear-gradient(to bottom, rgba(28,28,26,0) 0 31px, rgba(28,28,26,0.06) 31px 32px), var(--paper);
+  color:var(--ink); font-family:'Inter', sans-serif; text-align:center; padding:24px;
+}
+.box{
+  max-width:520px; border:3px solid var(--ink); border-radius:16px;
+  background:var(--yellow); padding:48px 32px; box-shadow:7px 9px 0 var(--ink);
+}
+h1{font-family:'Handjet', sans-serif; font-weight:800; font-size:clamp(40px,8vw,64px); line-height:0.95; margin:0 0 10px;}
+p{font-family:'Just Me Again Down Here', cursive; font-size:26px; margin:0 0 26px;}
+a.go{
+  display:inline-block; background:var(--ink); color:var(--paper);
+  font-family:'DM Mono', monospace; font-size:13px; font-weight:600;
+  padding:13px 24px; border-radius:6px;
+}
+.spin{display:inline-block; animation:spin 1.6s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+  <div class="box">
+    <h1>HEY THERE!</h1>
+    <p>taking you to my portfolio <span class="spin">☕</span></p>
+    <a class="go" href="portfolio/">open portfolio</a>
+  </div>
+  <script>setTimeout(function(){location.href = 'portfolio/';}, 1800);</script>
+</body>
+</html>

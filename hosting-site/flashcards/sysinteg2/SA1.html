@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Systems Integration and Architecture 2 — Review Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#0E1C2C;
+    --panel:#14283D;
+    --grid:#1F3A54;
+    --grid-soft:#182F45;
+    --ink:#DCE8F0;
+    --ink-dim:#7C93A8;
+    --accent:#F2A65A;
+    --live:#57C785;
+    --live-bg:rgba(87,199,133,0.12);
+    --fault:#E2685C;
+    --fault-bg:rgba(226,104,92,0.12);
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(var(--grid-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-soft) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    display:flex;
+    justify-content:center;
+    padding:40px 16px;
+  }
+
+  .sheet{
+    width:100%;
+    max-width:680px;
+    background:var(--panel);
+    border:1px solid var(--grid);
+    animation: settle 0.5s ease-out;
+  }
+
+  @keyframes settle{
+    from{ opacity:0; transform:translateY(8px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .title-block{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    padding:20px 24px;
+    border-bottom:1px solid var(--grid);
+  }
+
+  .title-block h1{
+    margin:0;
+    font-size:1.05rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+
+  .title-block .subtitle{
+    margin-top:4px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--ink-dim);
+  }
+
+  .title-meta{
+    text-align:right;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--ink-dim);
+    line-height:1.6;
+  }
+
+  .title-meta strong{
+    color:var(--ink);
+    font-weight:500;
+  }
+
+  .ruler{
+    display:flex;
+    gap:2px;
+    padding:14px 24px 16px;
+    border-bottom:1px solid var(--grid);
+    flex-wrap:wrap;
+  }
+
+  .tick{
+    width:8px;
+    height:6px;
+    background:var(--grid);
+    cursor:pointer;
+    transition: background-color 0.15s, height 0.15s;
+  }
+
+  .tick:hover{ background:var(--ink-dim); }
+  .tick.current{ background:var(--accent); height:12px; }
+  .tick.right{ background:var(--live); }
+  .tick.wrong{ background:var(--fault); }
+
+  .controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    padding:16px 24px;
+    border-bottom:1px solid var(--grid);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+  }
+
+  .controls label{ color:var(--ink-dim); }
+
+  input[type="number"]{
+    width:52px;
+    padding:6px 8px;
+    background:var(--paper);
+    border:1px solid var(--grid);
+    color:var(--ink);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+  }
+  input[type="number"]:focus{ outline:2px solid var(--accent); outline-offset:1px; }
+
+  button{
+    background:transparent;
+    color:var(--ink-dim);
+    border:1px solid var(--grid);
+    padding:7px 12px;
+    cursor:pointer;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  button:hover:not(:disabled){ border-color:var(--ink-dim); color:var(--ink); }
+  button:disabled{ opacity:0.35; cursor:not-allowed; }
+  button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  .toggle{ display:flex; align-items:center; gap:6px; color:var(--ink-dim); cursor:pointer; user-select:none; }
+  .toggle input{ cursor:pointer; accent-color:var(--accent); }
+
+  .body-area{ padding:26px 24px 24px; }
+
+  .q-index{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    color:var(--accent);
+    margin-bottom:8px;
+  }
+
+  .question-text{
+    font-size:1.12rem;
+    line-height:1.55;
+    margin-bottom:8px;
+    max-width:56ch;
+  }
+
+  .multi-hint{
+    font-size:0.82rem;
+    color:var(--ink-dim);
+    margin-bottom:16px;
+  }
+
+  .options{ display:flex; flex-direction:column; gap:8px; margin-bottom:8px; }
+
+  .option{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:12px 14px;
+    border:1px solid var(--grid);
+    cursor:pointer;
+    transition: border-color 0.15s, background-color 0.15s;
+  }
+  .option:hover:not(.disabled){ border-color:var(--ink-dim); }
+
+  .marker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    color:var(--ink-dim);
+    flex-shrink:0;
+    padding-top:1px;
+  }
+
+  .option input[type="checkbox"]{
+    position:absolute;
+    opacity:0;
+    width:0;
+    height:0;
+  }
+
+  .opt-text{ font-size:0.98rem; line-height:1.45; }
+
+  .option.correct{ border-color:var(--live); background:var(--live-bg); }
+  .option.correct .marker{ color:var(--live); }
+  .option.incorrect{ border-color:var(--fault); background:var(--fault-bg); }
+  .option.incorrect .marker{ color:var(--fault); }
+  .option.disabled{ cursor:default; }
+
+  .submit-row{ display:flex; justify-content:flex-end; margin:14px 0 4px; }
+  .submit-btn{ color:var(--accent); border-color:var(--accent); }
+  .submit-btn:hover:not(:disabled){ color:var(--paper); background:var(--accent); }
+
+  .navigation{
+    display:flex;
+    justify-content:space-between;
+    padding:16px 24px 22px;
+    border-top:1px solid var(--grid);
+  }
+</style>
+</head>
+<body>
+
+  <div class="sheet">
+    <div class="title-block">
+      <div>
+        <h1>Systems Integration &amp; Architecture 2</h1>
+        <div class="subtitle">FA1 / FA2 review sheet</div>
+      </div>
+      <div class="title-meta">
+        Sheet <strong id="questionCounter">1</strong> of <span id="totalCount">60</span><br>
+        Score <strong id="scoreDisplay">0</strong>
+      </div>
+    </div>
+
+    <div class="ruler" id="ruler"></div>
+
+    <div class="controls">
+      <label for="jumpInput">Jump to</label>
+      <input type="number" id="jumpInput" min="1" max="60" placeholder="1–60">
+      <button onclick="jumpToQuestion()">Go</button>
+      <button onclick="shuffleQuestions()">Shuffle questions</button>
+      <label class="toggle">
+        <input type="checkbox" id="shuffleOptionsToggle" checked>
+        Shuffle choices
+      </label>
+      <button onclick="resetQuiz()">Reset sheet</button>
+    </div>
+
+    <div class="body-area">
+      <div class="q-index" id="qIndex">Q01</div>
+      <div class="question-text" id="questionText">Loading…</div>
+      <div class="multi-hint" id="multiHint" style="display:none;">Select every option that applies, then submit.</div>
+
+      <div class="options" id="optionsContainer"></div>
+
+      <div class="submit-row" id="submitRow" style="display:none;">
+        <button class="submit-btn" id="submitBtn" onclick="submitMultiAnswer()">Submit answer</button>
+      </div>
+    </div>
+
+    <div class="navigation">
+      <button id="prevBtn" onclick="navigate(-1)">← Previous</button>
+      <button id="nextBtn" onclick="navigate(1)">Next →</button>
+    </div>
+  </div>
+
+<script>
+const originalQuestionsData = [
+  { q: "Which architecture decision would differ most between a standalone and an integrated version of the same system?", options: ["The choice of unit test framework", "The transaction boundary and its failure semantics", "The version control branching model", "The indentation style"], correct: "The transaction boundary and its failure semantics" },
+  { q: "Sequence diagrams are useful for exposing retry and idempotency requirements.", options: ["True", "False"], correct: "True" },
+  { q: "A use case diagram for an integration scenario should model an external system as:", options: ["An actor outside the boundary", "A subsystem inside the boundary", "A use case in its own right", "A data store"], correct: "An actor outside the boundary" },
+  { q: "A generated diagram is best regarded as:", options: ["A hypothesis to be tested against the requirements", "Evidence of design competence", "A finished deliverable", "A substitute for the integration point register"], correct: "A hypothesis to be tested against the requirements" },
+  { q: "Why must data SEMANTICS be specified and not just data types?", options: ["Because semantics determine the encryption algorithm", "Because two systems can agree the type is a string and still disagree on what it means", "Because types are unreliable across languages", "Because types are optional in JSON"], correct: "Because two systems can agree the type is a string and still disagree on what it means" },
+  { q: "A standalone architecture asks what structure is best for the system. An integrated architecture asks:", options: ["Which vendor offers the lowest price", "How many developers are available", "Which language the team prefers", "What structure is best given what the system must talk to"], correct: "What structure is best given what the system must talk to" },
+  { q: "Under the course AI-use matrix, for the Technical 1 ideation exercise the AI may:", options: ["Assign the likelihood of each integration risk", "Generate the first draft, which you must then critique and correct", "Write the final defence of each correction", "Produce the submitted diagram without review"], correct: "Generate the first draft, which you must then critique and correct" },
+  { q: "What must accompany a corrected AI-generated model in the [AI-INTEGRATED] submission?", options: ["Only the corrected diagrams", "The original AI artifact, a marked error list, the corrected version, and a written defence", "A signed statement that AI was not used", "A screenshot of the prompt only"], correct: "The original AI artifact, a marked error list, the corrected version, and a written defence" },
+  { q: "In a standalone system there is one trust boundary. In an integrated system there is:", options: ["One shared boundary managed centrally", "None, since partners are trusted by contract", "Exactly two", "One per integration point, each authenticated separately"], correct: "One per integration point, each authenticated separately" },
+  { q: "An integration point register records interface, format, synchronicity, error handling, and:", options: ["The estimated lines of code", "The developer's name and contact details", "The availability expectation placed on the external system", "The test coverage percentage"], correct: "The availability expectation placed on the external system" },
+  { q: "In a standalone system a transaction boundary is one database transaction. Across an integration it usually requires:", options: ["A longer database timeout", "A larger connection pool", "Nothing different", "Compensation, because a distributed transaction cannot simply be rolled back"], correct: "Compensation, because a distributed transaction cannot simply be rolled back" },
+  { q: "A synchronous call is appropriate when:", options: ["The operation takes several minutes", "The partner is frequently unavailable", "The answer is required immediately and the operation is fast", "The volume is very high and bursty"], correct: "The answer is required immediately and the operation is fast" },
+  { q: "Specifying the data type of a field is sufficient; semantics can be inferred.", options: ["True", "False"], correct: "False" },
+  { q: "A distributed process that fails halfway can be rolled back atomically like a database transaction.", options: ["True", "False"], correct: "False" },
+  { q: "A compensating action is required because:", options: ["Logs must be written", "Networks are slow", "A distributed process that fails partway cannot be rolled back atomically", "Partners charge per transaction"], correct: "A distributed process that fails partway cannot be rolled back atomically" },
+  { q: "Why does modelling a system as a human actor cause problems?", options: ["It prevents code generation", "It makes the diagram harder to read", "It hides that a machine is calling, with machine retry and volume behaviour", "It violates the UML specification"], correct: "It hides that a machine is calling, with machine retry and volume behaviour" },
+  { q: "Which is NOT one of the seven elements of a complete integration point specification?", options: ["Data format and field semantics", "Versioning strategy", "Retry policy and idempotency", "The vendor's commercial pricing model"], correct: "The vendor's commercial pricing model" },
+  { q: "In a standalone system, deployment happens when the build is ready. In an integrated system, deployment must be:", options: ["Delayed until all partners upgrade simultaneously", "Sequenced so no consumer is left calling an interface that no longer exists", "Performed only at night", "Performed by the partner"], correct: "Sequenced so no consumer is left calling an interface that no longer exists" },
+  { q: "Two systems are each internally correct but together produce a wrong result. The most likely cause is:", options: ["A defect in one system's code", "An incompletely specified contract between them", "An operating system incompatibility", "A hardware fault"], correct: "An incompletely specified contract between them" },
+  { q: "An asynchronous boundary is appropriate when:", options: ["The caller needs an immediate answer", "The work is slow, bulk, or the partner is unreliable", "The two systems share a database", "Debugging simplicity is the priority"], correct: "The work is slow, bulk, or the partner is unreliable" },
+
+  { q: "Chaining more dependencies at fixed availability improves end-to-end availability.", options: ["True", "False"], correct: "False" },
+  { q: "Why is McCall's product transition group the most relevant to this course?", options: ["Because the other groups apply only to hardware", "Because portability, reusability, and interoperability decide whether integration succeeds", "Because it is the largest group", "Because it is the easiest to measure"], correct: "Because portability, reusability, and interoperability decide whether integration succeeds" },
+  { q: "Every principle from IT0023 still applies in IT0129.", options: ["True", "False"], correct: "True" },
+  { q: "Two systems use a field named \"status\" to mean different things. This is an example of:", options: ["A version control conflict", "A performance defect", "Assumed data semantics", "A licensing problem"], correct: "Assumed data semantics" },
+  { q: "Which of the following change when a system must integrate rather than stand alone?", options: ["The need for a quality focus disappears", "You must handle the partner's error behaviour", "Their availability window constrains yours", "You inherit a data model you did not design", "A published interface becomes a commitment"], correct: ["You must handle the partner's error behaviour", "Their availability window constrains yours", "You inherit a data model you did not design", "A published interface becomes a commitment"] },
+  { q: "Under integration, the \"tools\" layer typically expands to include:", options: ["Text editors and debuggers only", "Middleware, message brokers, API gateways, and CI/CD pipelines", "Requirements templates", "Project accounting software"], correct: "Middleware, message brokers, API gateways, and CI/CD pipelines" },
+  { q: "Which factors belong to McCall's product operation group?", options: ["Correctness, reliability, efficiency, integrity, usability", "Maintainability, flexibility, testability", "Portability, reusability, interoperability", "Cost, schedule, risk"], correct: "Correctness, reliability, efficiency, integrity, usability" },
+  { q: "The waterfall model can still work in an integration setting when:", options: ["The partner changes the API frequently", "The team is co-located", "No specification exists", "Interfaces are fixed by contract before work begins"], correct: "Interfaces are fixed by contract before work begins" },
+  { q: "Which McCall perspective contains interoperability?", options: ["Product revision", "Product transition", "Product operation", "None; interoperability is not a McCall factor"], correct: "Product transition" },
+  { q: "A partner's maintenance window falls during your peak hour. This is:", options: ["A defect in their software", "A scalability failure", "An availability mismatch, an integration constraint rather than a coding problem", "A security incident"], correct: "An availability mismatch, an integration constraint rather than a coding problem" },
+  { q: "Integration projects most often fail on:", options: ["Dependency on things the team does not control", "Choice of programming language", "Coding velocity", "Number of developers assigned"], correct: "Dependency on things the team does not control" },
+  { q: "Your system reads directly from a partner's database rather than through their published API. This is:", options: ["Good practice, as it reduces latency", "Tight coupling to an internal model, which will break when they change their schema", "An example of loose coupling"], correct: "Tight coupling to an internal model, which will break when they change their schema" },
+  { q: "Current research on agile team dynamics suggests that coordination cost:", options: ["Falls as more parties are added", "Is unaffected by team size", "Rises sharply with the number of parties involved", "Depends only on tooling"], correct: "Rises sharply with the number of parties involved" },
+  { q: "An integration project depends on a partner whose release dates are outside your control. Which process model risk is highest?", options: ["Waterfall, because documentation is produced", "Incremental, because increments are small", "Reuse-oriented, because components exist", "Agile, because a sprint may depend on a release you cannot schedule"], correct: "Agile, because a sprint may depend on a release you cannot schedule" },
+  { q: "Which factors belong to McCall's product revision group?", options: ["Portability, reusability, interoperability", "Usability, integrity, correctness", "Correctness, reliability, efficiency", "Maintainability, flexibility, testability"], correct: "Maintainability, flexibility, testability" },
+  { q: "Which observation best characterises the common integration challenges?", options: ["Most are semantic and organizational rather than technical", "Most are resolved by adding developers", "Most are defects in compiler output", "Most are caused by insufficient hardware"], correct: "Most are semantic and organizational rather than technical" },
+  { q: "In a standalone system you choose the data model. In an integrated system you:", options: ["Must always adopt the partner's model wholesale", "Store data only in memory", "Have no data model at all", "Must map to and from external models you did not design"], correct: "Must map to and from external models you did not design" },
+  { q: "Which software engineering layer is most affected by adding organizational boundaries?", options: ["Methods, which no longer apply", "Process, which must now coordinate across parties", "Quality focus, which is abandoned", "Tools, which become unnecessary"], correct: "Process, which must now coordinate across parties" },
+  { q: "Most integration failures are caused by compiler and language defects.", options: ["True", "False"], correct: "False" },
+  { q: "Interoperability belongs to McCall's product transition group.", options: ["True", "False"], correct: "True" },
+
+  { q: "In an integrated system, your effective quality attributes are best described as:", options: ["The best of your components", "The average of your components", "Bounded by the weakest of your dependencies", "Independent of your dependencies"], correct: "Bounded by the weakest of your dependencies" },
+  { q: "IT0129 differs from IT0023 principally because you must now engineer a system that:", options: ["Runs only on cloud infrastructure", "Has no requirements specification", "Must work correctly together with systems you did not build and cannot change", "Uses a different programming paradigm"], correct: "Must work correctly together with systems you did not build and cannot change" },
+  { q: "Nobody documented what should happen when a partner call times out. This is an example of:", options: ["Semantic drift", "Availability mismatch", "Unspecified failure behaviour", "Organizational distance"], correct: "Unspecified failure behaviour" },
+  { q: "In a standalone system, interoperability is optional. In an integrated system it is:", options: ["A concern only for embedded systems", "Still optional", "The point of the exercise", "Handled entirely by the network layer"], correct: "The point of the exercise" },
+  { q: "Four services are chained, each with 99% availability. The approximate end-to-end availability is:", options: ["About 96%", "99.9%", "About 99.99%", "99%"], correct: "About 96%" },
+  { q: "Why does psychological safety matter particularly in integration work?", options: ["It reduces the need for testing", "It replaces the need for contracts", "It shortens the critical path", "It determines whether a problem is raised early rather than after the interface is published and consumed"], correct: "It determines whether a problem is raised early rather than after the interface is published and consumed" },
+
+  { q: "Specifying \"the system sends customer data to the partner\" is inadequate because it omits:", options: ["The deployment date", "The name of the partner", "Format, semantics, synchronicity, error handling, retry, and versioning", "The developer responsible"], correct: "Format, semantics, synchronicity, error handling, retry, and versioning" },
+  { q: "An AI-generated sequence diagram shows only the successful exchange. The missing element is:", options: ["The deployment nodes", "The class attributes", "The actor names", "The failure and timeout paths"], correct: "The failure and timeout paths" },
+  { q: "Which constraint on an integrated architecture is typically NOT negotiable?", options: ["Your internal naming conventions", "Your choice of test framework", "Your own module decomposition", "The partner's authentication scheme and availability window"], correct: "The partner's authentication scheme and availability window" },
+  { q: "Which of the following belong in a complete integration point specification?", options: ["Versioning strategy", "The partner's internal class hierarchy", "Synchronicity, error handling, and retry policy", "Authentication and authorization", "Interface operations, inputs, and outputs", "Data format and the semantics of each field"], correct: ["Versioning strategy", "Synchronicity, error handling, and retry policy", "Authentication and authorization", "Interface operations, inputs, and outputs", "Data format and the semantics of each field"] },
+  { q: "Which diagram best shows compensating actions when one participant fails mid-process?", options: ["Activity diagram", "Use case diagram", "Class diagram", "State machine for a single object"], correct: "Activity diagram" },
+  { q: "What does an asynchronous design require that a synchronous one does not?", options: ["A faster network", "A larger database", "Correlation of replies, ordering, and duplicate handling"], correct: "Correlation of replies, ordering, and duplicate handling" },
+
+  { q: "McCall's quality model groups quality factors under three perspectives. Which are they?", options: ["Product operation, product revision, product transition", "Design, build, deploy", "Functional, non-functional, domain", "Cost, schedule, scope"], correct: "Product operation, product revision, product transition" },
+  { q: "Which is the most consequential defect to leave in an integration model?", options: ["A misaligned actor symbol", "A missing failure path on a revenue-carrying exchange", "An unnumbered use case", "An inconsistent font in the diagram"], correct: "A missing failure path on a revenue-carrying exchange" },
+  { q: "Which diagram most directly exposes timeout, retry, and idempotency requirements?", options: ["Sequence diagram", "Context diagram", "Deployment diagram", "Class diagram"], correct: "Sequence diagram" },
+
+  { q: "What does the availability chaining calculation demonstrate?", options: ["That availability improves with more services", "That end-to-end availability is the product of dependencies, so it falls as the chain lengthens", "That availability is unrelated to the number of dependencies", "That redundancy is unnecessary"], correct: "That end-to-end availability is the product of dependencies, so it falls as the chain lengthens" },
+  { q: "A partner changes their interface and consumers discover it in production. This is:", options: ["Versioning neglect", "A testing failure only", "A licensing violation", "A capacity planning failure"], correct: "Versioning neglect" },
+  { q: "Which statement is true of an integrated system but not a standalone one?", options: ["Its availability window is constrained by parties outside your control", "It benefits from a documented process", "It requires a quality focus", "It needs testing before release"], correct: "Its availability window is constrained by parties outside your control" },
+  { q: "In an integrated system, each integration point is a separate trust boundary.", options: ["True", "False"], correct: "True" },
+  { q: "Placing an availability expectation on an external system is only meaningful if:", options: ["It has been agreed with the party that owns that system", "It is documented in your own wiki", "It exceeds your own availability target", "It is expressed as a percentage"], correct: "It has been agreed with the party that owns that system" }
+];
+
+let questions = JSON.parse(JSON.stringify(originalQuestionsData));
+let currentIndex = 0;
+let score = 0;
+let answeredState = new Array(questions.length).fill(false);
+const LETTERS = ["A","B","C","D","E","F"];
+
+function shuffleArray(array){
+  for(let i=array.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [array[i],array[j]] = [array[j],array[i]];
+  }
+}
+
+function isMultiple(q){ return Array.isArray(q.correct); }
+
+function sameSet(a,b){
+  if(a.length!==b.length) return false;
+  const sa=[...a].sort(); const sb=[...b].sort();
+  return sa.every((v,i)=>v===sb[i]);
+}
+
+function buildRuler(){
+  const ruler = document.getElementById('ruler');
+  ruler.innerHTML = '';
+  questions.forEach((q,i)=>{
+    const t = document.createElement('div');
+    t.className = 'tick';
+    t.title = `Question ${i+1}`;
+    t.onclick = () => { currentIndex = i; loadQuestion(); };
+    ruler.appendChild(t);
+  });
+  updateRuler();
+}
+
+function updateRuler(){
+  const ticks = document.querySelectorAll('.tick');
+  ticks.forEach((t,i)=>{
+    t.classList.remove('current','right','wrong');
+    const q = questions[i];
+    if(answeredState[i]){
+      const correctSet = isMultiple(q) ? q.correct : [q.correct];
+      const userSet = isMultiple(q) ? (q.userAnswer||[]) : [q.userAnswer];
+      t.classList.add(sameSet(userSet, correctSet) ? 'right' : 'wrong');
+    }
+    if(i===currentIndex) t.classList.add('current');
+  });
+}
+
+function loadQuestion(){
+  const currentQ = questions[currentIndex];
+  const isAnswered = answeredState[currentIndex];
+  const multi = isMultiple(currentQ);
+
+  document.getElementById('questionCounter').textContent = currentIndex+1;
+  document.getElementById('totalCount').textContent = questions.length;
+  document.getElementById('qIndex').textContent = 'Q' + String(currentIndex+1).padStart(2,'0');
+  document.getElementById('questionText').textContent = currentQ.q;
+  document.getElementById('prevBtn').disabled = currentIndex===0;
+  document.getElementById('nextBtn').disabled = currentIndex===questions.length-1;
+
+  const multiHint = document.getElementById('multiHint');
+  const submitRow = document.getElementById('submitRow');
+  const submitBtn = document.getElementById('submitBtn');
+  const optionsContainer = document.getElementById('optionsContainer');
+  optionsContainer.innerHTML = '';
+
+  let displayOptions = [...currentQ.options];
+  if(!isAnswered && document.getElementById('shuffleOptionsToggle').checked){
+    shuffleArray(displayOptions);
+  } else if(isAnswered){
+    displayOptions = currentQ.displayedOptions || [...currentQ.options];
+  }
+  currentQ.displayedOptions = displayOptions;
+
+  if(multi){
+    multiHint.style.display = isAnswered ? 'none' : 'block';
+    submitRow.style.display = isAnswered ? 'none' : 'flex';
+    submitBtn.disabled = false;
+
+    displayOptions.forEach((optionText, idx)=>{
+      const optDiv = document.createElement('label');
+      optDiv.className = 'option';
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.value = optionText;
+
+      const marker = document.createElement('span');
+      marker.className = 'marker';
+      marker.textContent = `[${LETTERS[idx]}]`;
+
+      const span = document.createElement('span');
+      span.className = 'opt-text';
+      span.textContent = optionText;
+
+      optDiv.appendChild(marker);
+      optDiv.appendChild(checkbox);
+      optDiv.appendChild(span);
+
+      checkbox.addEventListener('change', ()=>{
+        marker.textContent = checkbox.checked ? `[\u2713]` : `[${LETTERS[idx]}]`;
+      });
+
+      const wasSelected = isAnswered && (currentQ.userAnswer||[]).includes(optionText);
+
+      if(isAnswered){
+        optDiv.classList.add('disabled');
+        checkbox.disabled = true;
+        checkbox.checked = wasSelected;
+        marker.textContent = `[${LETTERS[idx]}]`;
+        const isCorrectOption = currentQ.correct.includes(optionText);
+        if(isCorrectOption){ optDiv.classList.add('correct'); }
+        else if(wasSelected){ optDiv.classList.add('incorrect'); }
+      }
+
+      optionsContainer.appendChild(optDiv);
+    });
+  } else {
+    multiHint.style.display = 'none';
+    submitRow.style.display = 'none';
+
+    displayOptions.forEach((optionText, idx)=>{
+      const optDiv = document.createElement('div');
+      optDiv.className = 'option';
+
+      const marker = document.createElement('span');
+      marker.className = 'marker';
+      marker.textContent = `[${LETTERS[idx]}]`;
+
+      const span = document.createElement('span');
+      span.className = 'opt-text';
+      span.textContent = optionText;
+
+      optDiv.appendChild(marker);
+      optDiv.appendChild(span);
+
+      if(isAnswered){
+        optDiv.classList.add('disabled');
+        if(optionText === currentQ.correct){ optDiv.classList.add('correct'); }
+        else if(optionText === currentQ.userAnswer && currentQ.userAnswer !== currentQ.correct){ optDiv.classList.add('incorrect'); }
+      } else {
+        optDiv.onclick = () => handleAnswer(optDiv, optionText);
+      }
+
+      optionsContainer.appendChild(optDiv);
+    });
+  }
+
+  updateRuler();
+}
+
+function handleAnswer(element, selectedAnswer){
+  if(answeredState[currentIndex]) return;
+  const currentQ = questions[currentIndex];
+  currentQ.userAnswer = selectedAnswer;
+  answeredState[currentIndex] = true;
+
+  document.querySelectorAll('.option').forEach(opt=>opt.classList.add('disabled'));
+
+  if(selectedAnswer === currentQ.correct){
+    element.classList.add('correct');
+    score++;
+    document.getElementById('scoreDisplay').textContent = score;
+  } else {
+    element.classList.add('incorrect');
+    document.querySelectorAll('.option').forEach(opt=>{
+      if(opt.querySelector('.opt-text').textContent === currentQ.correct){
+        opt.classList.add('correct');
+      }
+    });
+  }
+  updateRuler();
+}
+
+function submitMultiAnswer(){
+  if(answeredState[currentIndex]) return;
+  const currentQ = questions[currentIndex];
+  const checkboxes = document.querySelectorAll('#optionsContainer input[type="checkbox"]');
+  const selected = Array.from(checkboxes).filter(cb=>cb.checked).map(cb=>cb.value);
+
+  currentQ.userAnswer = selected;
+  answeredState[currentIndex] = true;
+
+  if(sameSet(selected, currentQ.correct)){
+    score++;
+    document.getElementById('scoreDisplay').textContent = score;
+  }
+  loadQuestion();
+}
+
+function navigate(direction){
+  currentIndex += direction;
+  if(currentIndex<0) currentIndex=0;
+  if(currentIndex>=questions.length) currentIndex=questions.length-1;
+  loadQuestion();
+}
+
+function jumpToQuestion(){
+  const input = document.getElementById('jumpInput');
+  const val = parseInt(input.value);
+  if(!isNaN(val) && val>=1 && val<=questions.length){
+    currentIndex = val-1;
+    loadQuestion();
+    input.value='';
+  } else {
+    alert(`Please enter a valid number between 1 and ${questions.length}`);
+  }
+}
+
+function shuffleQuestions(){
+  if(confirm("This will restart the sheet and wipe your current score. Continue?")){
+    shuffleArray(questions);
+    resetStates();
+  }
+}
+
+function resetQuiz(){
+  if(confirm("This will reset the sheet back to the original order. Continue?")){
+    questions = JSON.parse(JSON.stringify(originalQuestionsData));
+    resetStates();
+  }
+}
+
+function resetStates(){
+  currentIndex = 0;
+  score = 0;
+  answeredState = new Array(questions.length).fill(false);
+  document.getElementById('scoreDisplay').textContent = score;
+  buildRuler();
+  loadQuestion();
+}
+
+document.getElementById('jumpInput').addEventListener('keypress', function(e){
+  if(e.key==='Enter') jumpToQuestion();
+});
+
+buildRuler();
+loadQuestion();
+</script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CoDesk — Java Object-Oriented Programming: classes, objects, inheritance, and more.">
+  <title>Object-Oriented Programming · Lessons · CoDesk</title>
+
+  <link rel="shortcut icon" type="image/png" href="../../assets/images/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ======= NAVBAR ======= -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../assets/images/logo.png" alt="CoDesk logo">
+        <span>Co<em>Desk</em></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="../../index.html#home">Home</a>
+        <a href="../../index.html#courses">Courses</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#team">Team</a>
+        <a href="../../index.html#contact">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn" data-theme-toggle title="Toggle dark mode">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a href="../../assessments/quiz.html" class="btn btn--primary btn--sm btn--nav">Quiz</a>
+        <button class="icon-btn nav-toggle" aria-label="Open menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-nav">
+    <a href="../../index.html#home">Home</a>
+    <a href="../../index.html#courses">Courses</a>
+    <a href="../../index.html#about">About</a>
+    <a href="../../index.html#team">Team</a>
+    <a href="../../index.html#contact">Contact</a>
+    <hr>
+    <a href="../../assessments/quiz.html">Take the Quiz</a>
+  </div>
+
+  <!-- ======= LESSON LAYOUT ======= -->
+  <div class="container">
+    <div class="lesson-layout" data-course="java" data-lesson="3" data-total="5">
+
+      <!-- sidebar / course nav -->
+      <aside class="lesson-side">
+        <div class="brand-lang"><img src="../../assets/images/Java.png" alt=""> Java</div>
+        <h4>Course lessons</h4>
+        <div class="side-links">
+          <a class="side-link" data-lesson="1" href="lesson-1-introduction.html"><span class="ic">1</span> Introduction to Java</a>
+          <a class="side-link" data-lesson="2" href="lesson-2-variables.html"><span class="ic">2</span> Variables</a>
+          <a class="side-link current" data-lesson="3" href="lesson-3-oop.html"><span class="ic">3</span> Object-Oriented Programming</a>
+          <a class="side-link" data-lesson="4" href="lesson-4-conditional-controlflow.html"><span class="ic">4</span> Conditional &amp; Control Flow</a>
+          <a class="side-link" data-lesson="5" href="lesson-5-access-encapsulation-static.html"><span class="ic">5</span> Access, Encapsulation &amp; Static</a>
+        </div>
+        <div class="side-progress">
+          <div class="row"><span>Track progress</span><span class="count"></span></div>
+          <div class="track"><div class="bar"></div></div>
+        </div>
+      </aside>
+
+      <!-- lesson body -->
+      <main class="lesson-main">
+        <div class="lesson-head">
+          <nav class="breadcrumb">
+            <a href="../../index.html">Home</a><span class="sep">/</span>
+            <a href="../../index.html#courses">Courses</a><span class="sep">/</span>
+            <a href="../../index.html#courses">Java</a><span class="sep">/</span>
+            <span>Lesson 3</span>
+          </nav>
+          <div class="lesson-title-wrap">
+            <div>
+              <h1>Object-Oriented Programming</h1>
+              <div class="lesson-meta">
+                <span>5 lessons</span><span>~15 min</span><span>1 video</span>
+              </div>
+            </div>
+            <span class="lbl java">Java</span>
+          </div>
+        </div>
+
+        <article class="lesson-content">
+          <p>How does Object-Oriented Programming work in Java?</p>
+
+          <p>Object-oriented programming is a programming paradigm that uses objects to represent data and behaviors. Java is an object-oriented programming language that supports the four basic principles of object-oriented programming: encapsulation, inheritance, abstraction, and polymorphism.</p>
+
+          <p>In Java, everything is an object except for the primitive data types (such as int, float, etc.). Objects in Java are instances of classes, which are templates for creating objects. A class defines the properties (fields) and behaviors (methods) of objects that belong to it.</p>
+
+          <p>To use an object in Java, you must first create an instance of the class that defines it. This is done using the "new" keyword followed by the name of the class and any arguments that the class constructor requires. For example:</p>
+
+          <pre class="code-block" data-lang="java">Person john = new Person("John", 25);</pre>
+
+          <p>This creates an instance of the Person class with the name "John" and age 25 and assigns it to the variable "john".</p>
+
+          <p>Once you have an instance of a class, you can access its fields and methods using dot notation. For example:</p>
+
+          <pre class="code-block" data-lang="java">System.out.println(john.getName()); // prints "John"
+john.setAge(26); // sets the age of the person to 26</pre>
+
+          <p>This code accesses the "name" field and "getName()" and "setAge()" methods of the "john" object. In Java, you can also create subclasses that inherit properties and behaviors from a parent class. This is done using the "extends" keyword. For example:</p>
+
+          <pre class="code-block" data-lang="java">public class Student extends Person {
+    private int studentId;
+
+    public Student(String name, int age, int studentId) {
+        super(name, age);
+        this.studentId = studentId;
+    }
+    public int getStudentId() {
+        return studentId;
+    }
+}</pre>
+
+          <p>This code creates a subclass of the Person class called Student, which adds a "studentId" field and a "getStudentId()" method. The "super" keyword is used to call the constructor of the parent class.</p>
+
+          <p>Overall, Java's object-oriented programming features allow for creation of reusable and modular code, making it a popular choice for software development.</p>
+
+          <h3>Watch &amp; learn</h3>
+          <p>To know more about this lesson, you may watch the tutorial video below:</p>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/j0lBrYSlYaU" title="Java OOP Tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+          <div class="references">
+            <h5>References</h5>
+            <p>Video: <a href="https://youtu.be/j0lBrYSlYaU" target="_blank" rel="noopener">https://youtu.be/j0lBrYSlYaU</a></p>
+          </div>
+        </article>
+
+        <!-- prev / next -->
+        <div class="lesson-nav">
+          <a href="lesson-2-variables.html"><span class="dir">← Previous</span><b>Variables</b></a>
+          <a class="next hl" href="lesson-4-conditional-controlflow.html"><span class="dir">Next →</span><b>Conditional &amp; Control Flow</b></a>
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding:26px 0">
+        <span>Updated September 2026 · <b style="color:#fff">CoDesk</b>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+  <script src="../../assets/js/lesson.js"></script>
+</body>
+</html>

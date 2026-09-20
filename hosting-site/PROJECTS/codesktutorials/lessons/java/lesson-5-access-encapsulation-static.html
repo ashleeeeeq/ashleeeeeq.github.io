@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CoDesk — Java Access, Encapsulation &amp; Static: access modifiers, encapsulation, and static methods.">
+  <title>Access, Encapsulation &amp; Static · Lessons · CoDesk</title>
+
+  <link rel="shortcut icon" type="image/png" href="../../assets/images/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ======= NAVBAR ======= -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../assets/images/logo.png" alt="CoDesk logo">
+        <span>Co<em>Desk</em></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="../../index.html#home">Home</a>
+        <a href="../../index.html#courses">Courses</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#team">Team</a>
+        <a href="../../index.html#contact">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn" data-theme-toggle title="Toggle dark mode">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a href="../../assessments/quiz.html" class="btn btn--primary btn--sm btn--nav">Quiz</a>
+        <button class="icon-btn nav-toggle" aria-label="Open menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-nav">
+    <a href="../../index.html#home">Home</a>
+    <a href="../../index.html#courses">Courses</a>
+    <a href="../../index.html#about">About</a>
+    <a href="../../index.html#team">Team</a>
+    <a href="../../index.html#contact">Contact</a>
+    <hr>
+    <a href="../../assessments/quiz.html">Take the Quiz</a>
+  </div>
+
+  <!-- ======= LESSON LAYOUT ======= -->
+  <div class="container">
+    <div class="lesson-layout" data-course="java" data-lesson="5" data-total="5">
+
+      <!-- sidebar / course nav -->
+      <aside class="lesson-side">
+        <div class="brand-lang"><img src="../../assets/images/Java.png" alt=""> Java</div>
+        <h4>Course lessons</h4>
+        <div class="side-links">
+          <a class="side-link" data-lesson="1" href="lesson-1-introduction.html"><span class="ic">1</span> Introduction to Java</a>
+          <a class="side-link" data-lesson="2" href="lesson-2-variables.html"><span class="ic">2</span> Variables</a>
+          <a class="side-link" data-lesson="3" href="lesson-3-oop.html"><span class="ic">3</span> Object-Oriented Programming</a>
+          <a class="side-link" data-lesson="4" href="lesson-4-conditional-controlflow.html"><span class="ic">4</span> Conditional &amp; Control Flow</a>
+          <a class="side-link current" data-lesson="5" href="lesson-5-access-encapsulation-static.html"><span class="ic">5</span> Access, Encapsulation &amp; Static</a>
+        </div>
+        <div class="side-progress">
+          <div class="row"><span>Track progress</span><span class="count"></span></div>
+          <div class="track"><div class="bar"></div></div>
+        </div>
+      </aside>
+
+      <!-- lesson body -->
+      <main class="lesson-main">
+        <div class="lesson-head">
+          <nav class="breadcrumb">
+            <a href="../../index.html">Home</a><span class="sep">/</span>
+            <a href="../../index.html#courses">Courses</a><span class="sep">/</span>
+            <a href="../../index.html#courses">Java</a><span class="sep">/</span>
+            <span>Lesson 5</span>
+          </nav>
+          <div class="lesson-title-wrap">
+            <div>
+              <h1>Access, Encapsulation &amp; Static</h1>
+              <div class="lesson-meta">
+                <span>5 lessons</span><span>~15 min</span><span>1 video</span>
+              </div>
+            </div>
+            <span class="lbl java">Java</span>
+          </div>
+        </div>
+
+        <article class="lesson-content">
+          <p>How do access, encapsulation, and static methods work in Java?</p>
+
+          <p>Access control, encapsulation, and static methods are essential concepts in Java that control the visibility and behavior of variables and methods within a program.</p>
+
+          <p>Access control: Access control in Java allows you to control the visibility of variables and methods within a class. Java provides four access modifiers for this purpose:</p>
+
+          <ul>
+            <li><b>Public:</b> A public variable or method can be accessed from any other class in the program.</li>
+            <li><b>Private:</b> A private variable or method can only be accessed within the class in which it is defined.</li>
+            <li><b>Protected:</b> A protected variable or method can be accessed within the same package classes and sub-class of any other packages.</li>
+            <li><b>Default (no modifier):</b> A default variable or method can be accessed within the same package in which it is defined.</li>
+          </ul>
+
+          <p>The access modifiers can be applied to both variables and methods in Java.</p>
+
+          <p><b>Encapsulation:</b> Encapsulation is a principle of object-oriented programming that allows you to control the visibility and behavior of variables and methods within a class. Encapsulation helps to ensure that other parts of the program do not accidentally modify the internal state of a class. In Java, encapsulation is achieved through the use of access modifiers (as described above) and by providing public methods (known as "getters" and "setters") to access and modify the private variables of a class. Here's an example of encapsulation in Java:</p>
+
+          <pre class="code-block" data-lang="java">public class Person {
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+}</pre>
+
+          <p>In this example, the "name" and "age" fields are private and can only be accessed or modified through the public "getter" and "setter" methods.</p>
+
+          <p><b>Static methods:</b> A static method is a method that belongs to a class rather than an instance of the class. Static methods can be called directly on the class without creating an instance of the class first. Static methods are often used for utility functions or operations that do not depend on the state of a particular instance of a class. In Java, you declare a method as static using the "static" keyword. For example:</p>
+
+          <pre class="code-block" data-lang="java">public class MyUtils {
+    public static int add(int a, int b) {
+        return a + b;
+    }
+}</pre>
+
+          <p>Static methods are often used for utility functions that don't need to maintain any state, and the <b>Math</b> class is an excellent example of this. The <b>Math</b> class in Java contains several static methods that provide mathematical functions for performing various calculations. These methods are widely used in scientific and engineering applications and other fields where numerical calculations are required.</p>
+
+          <p>Here are some of the commonly used static methods in the <b>Math</b> class:</p>
+
+          <ol>
+            <li><b>abs()</b>: This method returns the absolute value of a number, which is its distance from zero. For example, <b>Math.abs(-5)</b> returns 5.</li>
+            <li><b>max()</b>: This method returns the greater of two numbers. For example, <b>Math.max(5, 7)</b> returns 7.</li>
+            <li><b>min()</b>: This method returns the smaller of two numbers. For example, <b>Math.min(5, 7)</b> returns 5.</li>
+            <li><b>sqrt()</b>: This method returns the square root of a number. For example, <b>Math.sqrt(25)</b> returns 5.</li>
+            <li><b>pow()</b>: This method returns the value of the first argument raised to the power of the second argument. For example, <b>Math.pow(2, 3)</b> returns 8.</li>
+            <li><b>exp()</b>: This method returns the exponential value of a number, which is e raised to the power of the given argument. For example, <b>Math.exp(1)</b> returns the value of e (approximately 2.718).</li>
+            <li><b>log()</b>: This method returns the natural logarithm of a number. For example, <b>Math.log(10)</b> returns the natural logarithm of 10 (approximately 2.302).</li>
+            <li><b>sin(), cos(), tan()</b>: These methods return the trigonometric sine, cosine, and tangent of an angle, respectively. These methods take the angle in radians as an argument. For example, <b>Math.sin(Math.PI/2)</b> returns the sine of 90 degrees (which is 1).</li>
+            <li><b>random()</b>: This method returns a random double value between 0.0 and 1.0. For example, <b>Math.random()</b> returns a value between 0.0 and 1.0 (exclusive).</li>
+          </ol>
+
+          <p>To use any of these methods, you can call them directly in the Math class like this:</p>
+
+          <pre class="code-block" data-lang="java">double result = Math.sqrt(25);
+System.out.println(Math.abs(-10));</pre>
+
+          <p>In this example, the <b>sqrt()</b> method is called in the <b>Math</b> class to calculate the square root of 25, which is then assigned to the <b>result</b> variable. And the other statement, Math.abs(-10), takes -10 as an argument and returns its absolute value of 10. The System.out.println() method then prints the value of 10 to the console.</p>
+
+          <p>Overall, the <b>Math</b> class provides various mathematical functions that can be used in multiple applications.</p>
+
+          <p>Moreover, access control, encapsulation, and static methods are important concepts in Java that help to ensure that code is well-organized, secure, and easy to maintain.</p>
+
+          <h3>Watch &amp; learn</h3>
+          <p>To know more about this lesson, you may watch the tutorial video below:</p>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/bvNU24rvhgA" title="Java Access & Encapsulation Tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+          <div class="references">
+            <h5>References</h5>
+            <p>Video: <a href="https://youtu.be/bvNU24rvhgA" target="_blank" rel="noopener">https://youtu.be/bvNU24rvhgA</a></p>
+          </div>
+        </article>
+
+        <!-- prev / next -->
+        <div class="lesson-nav">
+          <a href="lesson-4-conditional-controlflow.html"><span class="dir">← Previous</span><b>Conditional &amp; Control Flow</b></a>
+          <a class="next hl" href="../../assessments/quiz.html"><span class="dir">Next →</span><b>Finish with the CoDesk Quiz</b></a>
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding:26px 0">
+        <span>Updated September 2026 · <b style="color:#fff">CoDesk</b>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+  <script src="../../assets/js/lesson.js"></script>
+</body>
+</html>

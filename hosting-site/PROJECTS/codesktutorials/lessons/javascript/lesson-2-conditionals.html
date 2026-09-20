@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CoDesk — JavaScript Conditionals: if, if-else, and switch statements.">
+  <title>Conditionals · Lessons · CoDesk</title>
+
+  <link rel="shortcut icon" type="image/png" href="../../assets/images/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+
+  <!-- ======= NAVBAR ======= -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../assets/images/logo.png" alt="CoDesk logo">
+        <span>Co<em>Desk</em></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="../../index.html#home">Home</a>
+        <a href="../../index.html#courses">Courses</a>
+        <a href="../../index.html#about">About</a>
+        <a href="../../index.html#team">Team</a>
+        <a href="../../index.html#contact">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn" data-theme-toggle title="Toggle dark mode">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a href="../../assessments/quiz.html" class="btn btn--primary btn--sm btn--nav">Quiz</a>
+        <button class="icon-btn nav-toggle" aria-label="Open menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-nav">
+    <a href="../../index.html#home">Home</a>
+    <a href="../../index.html#courses">Courses</a>
+    <a href="../../index.html#about">About</a>
+    <a href="../../index.html#team">Team</a>
+    <a href="../../index.html#contact">Contact</a>
+    <hr>
+    <a href="../../assessments/quiz.html">Take the Quiz</a>
+  </div>
+
+  <!-- ======= LESSON LAYOUT ======= -->
+  <div class="container">
+    <div class="lesson-layout" data-course="javascript" data-lesson="2" data-total="5">
+
+      <!-- sidebar / course nav -->
+      <aside class="lesson-side">
+        <div class="brand-lang"><img src="../../assets/images/JavaScript.png" alt=""> JavaScript</div>
+        <h4>Course lessons</h4>
+        <div class="side-links">
+          <a class="side-link" data-lesson="1" href="lesson-1-introduction.html"><span class="ic">1</span> Introduction &amp; DOM Basics</a>
+          <a class="side-link current" data-lesson="2" href="lesson-2-conditionals.html"><span class="ic">2</span> Conditionals</a>
+          <a class="side-link" data-lesson="3" href="lesson-3-functions.html"><span class="ic">3</span> Functions</a>
+          <a class="side-link" data-lesson="4" href="lesson-4-arrays.html"><span class="ic">4</span> Arrays</a>
+          <a class="side-link" data-lesson="5" href="lesson-5-loops.html"><span class="ic">5</span> Loops</a>
+        </div>
+        <div class="side-progress">
+          <div class="row"><span>Track progress</span><span class="count"></span></div>
+          <div class="track"><div class="bar"></div></div>
+        </div>
+      </aside>
+
+      <!-- lesson body -->
+      <main class="lesson-main">
+        <div class="lesson-head">
+          <nav class="breadcrumb">
+            <a href="../../index.html">Home</a><span class="sep">/</span>
+            <a href="../../index.html#courses">Courses</a><span class="sep">/</span>
+            <a href="../../index.html#courses">JavaScript</a><span class="sep">/</span>
+            <span>Lesson 2</span>
+          </nav>
+          <div class="lesson-title-wrap">
+            <div>
+              <h1>Conditionals</h1>
+              <div class="lesson-meta">
+                <span>5 lessons</span><span>~15 min</span><span>1 video</span>
+              </div>
+            </div>
+            <span class="lbl js">JavaScript</span>
+          </div>
+        </div>
+
+        <article class="lesson-content">
+          <p>Conditionals in JavaScript allow you to make decisions and execute different blocks of code based on certain conditions. Three types of conditional statements are commonly used: <span class="inline-code">if</span>, <span class="inline-code">if-else</span>, and <span class="inline-code">switch</span>.</p>
+
+          <h3>If Statement</h3>
+          <p>The <span class="inline-code">if</span> statement allows you to execute a code block if a specified condition is true. If the condition is false, the code block is skipped.</p>
+          <p>Example:</p>
+          <pre class="code-block" data-lang="js">var age = 18;
+
+if (age >= 18) {
+    console.log("You are eligible to vote.");
+}</pre>
+          <p>In this example, if the <span class="inline-code">age</span> variable is 18 or greater, the message "You are eligible to vote" will be displayed.</p>
+
+          <h3>If-Else Statement</h3>
+          <p>The <span class="inline-code">if-else</span> statement provides an alternative execution path. If the condition specified in the <span class="inline-code">if</span> statement is true, the code block within the <span class="inline-code">if</span> statement is executed. The code block within the <span class="inline-code">else</span> statement is executed if the condition is false.</p>
+          <p>Example:</p>
+          <pre class="code-block" data-lang="js">var temperature = 25;
+if (temperature > 30) {
+    console.log("It's a hot day!");
+} else {
+    console.log("It's a pleasant day.");
+}</pre>
+          <p>In this example, if the temperature is greater than 30, the message "It's a hot day!" will be displayed. Otherwise, the message "It's a pleasant day." will be displayed.</p>
+
+          <h3>Switch Statement</h3>
+          <p>The <span class="inline-code">switch</span> statement provides a way to select one of many code blocks to be executed. It evaluates an expression and compares it with different cases. If a match is found, the corresponding code block is executed.</p>
+          <p>Example:</p>
+          <pre class="code-block" data-lang="js">var day = "Monday";
+
+switch (day) {
+    case "Monday":
+        console.log("It's the start of the week.");
+        break;
+    case "Friday":
+        console.log("It's almost the weekend!");
+        break;
+    default:
+        console.log("Enjoy your day!");
+}</pre>
+          <p>In this example, if the value of the <span class="inline-code">day</span> is "Monday", the message "It's the start of the week." will be displayed. If it's "Friday", the message "It's almost the weekend!" will be displayed. If none match, the default case will execute, and "Enjoy your day!" will be displayed.</p>
+
+          <p>These examples illustrate how conditionals in JavaScript allow you to control the flow of your program based on specific conditions. You can use logical operators, comparison operators, and various expressions to create more complex conditions within these statements.</p>
+
+          <h3>Watch &amp; learn</h3>
+          <p>To know more about this lesson, you may watch the tutorial video below:</p>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/_5SgikgFf0U" title="JavaScript Conditionals tutorial video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+          <div class="references">
+            <h5>References</h5>
+            <p>Readings: <a href="https://www.w3schools.com/" target="_blank" rel="noopener">https://www.w3schools.com/</a><br>
+            Video: <a href="https://youtu.be/_5SgikgFf0U" target="_blank" rel="noopener">https://youtu.be/_5SgikgFf0U</a></p>
+          </div>
+        </article>
+
+        <!-- prev / next -->
+        <div class="lesson-nav">
+          <a href="lesson-1-introduction.html"><span class="dir">← Previous</span><b>Introduction &amp; DOM Basics</b></a>
+          <a class="next hl" href="lesson-3-functions.html"><span class="dir">Next →</span><b>Up next: Functions</b></a>
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none; padding:26px 0">
+        <span>Updated September 2026 · <b style="color:#fff">CoDesk</b>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+  <script src="../../assets/js/lesson.js"></script>
+</body>
+</html>

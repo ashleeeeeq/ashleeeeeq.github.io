@@ -1,0 +1,118 @@
+@import url(https://fonts.googleapis.com/css?family=Share);
+
+* {
+    font-family: 'Share', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(280deg,#701850,#52911d,#4565ac,#f684e2,#e15e91);
+    background-size: 300% 300%;
+    animation: gradient-animation 25s ease infinite;
+}
+
+.container {
+    background: #F3F3FF;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    background: #F8F8FF;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.display-input {
+    width: 100%;
+    height: 60px;
+    font-size: 2em;
+    text-align: right;
+    padding: 15px;
+    border-radius: 15px;
+    border: none;
+    background: #EEF0F3;
+    color: black;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    width: 70px;
+    height: 70px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background: #EEEEEE;
+}
+
+.btn:active {
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn:nth-child(1) { /* C button */
+    background: #d4d4d4;
+}
+
+.btn:nth-child(2),
+.btn:nth-child(3),
+.btn:nth-child(4),
+.btn:nth-child(8),
+.btn:nth-child(12),
+.btn:nth-child(16) { /* Operator buttons */
+    color: #ff9f43;
+    font-weight: bold;
+}
+
+.btn-zero {
+    grid-column: span 2;
+    background: #ff9f43;
+    color: white;
+    width: 150px;
+}
+
+.btn-zero:hover {
+    background: #ff7b00;
+}
+
+.btn-equal {
+    grid-row: span 2;
+    height: 150px;
+    background: white;
+}
+
+@keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+}

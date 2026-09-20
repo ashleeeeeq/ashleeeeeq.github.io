@@ -45,6 +45,15 @@ $projects = [
         'tags' => ['PHP', 'CodeIgniter 4', 'MVC'],
         'color' => 'purple',
     ],
+    [
+        'slug' => 'E-COMM',
+        'name' => 'Coir E-Comm',
+        'num' => '006',
+        'date' => '2026',
+        'desc' => 'A CodeIgniter 4 e-commerce store for premium coconut coir products — storefront, cart, checkout, customer profiles and a full admin panel with inventory, orders and reports.',
+        'tags' => ['PHP', 'CodeIgniter 4', 'MySQL', 'E-commerce'],
+        'color' => 'ink',
+    ],
 ];
 
 $extras = [

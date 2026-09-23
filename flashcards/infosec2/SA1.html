@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Information Security 2 — Review Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#0E1C2C;
+    --panel:#14283D;
+    --grid:#1F3A54;
+    --grid-soft:#182F45;
+    --ink:#DCE8F0;
+    --ink-dim:#7C93A8;
+    --accent:#F2A65A;
+    --live:#57C785;
+    --live-bg:rgba(87,199,133,0.12);
+    --fault:#E2685C;
+    --fault-bg:rgba(226,104,92,0.12);
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(var(--grid-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-soft) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    display:flex;
+    justify-content:center;
+    padding:40px 16px;
+  }
+
+  .sheet{
+    width:100%;
+    max-width:680px;
+    background:var(--panel);
+    border:1px solid var(--grid);
+    animation: settle 0.5s ease-out;
+  }
+
+  @keyframes settle{
+    from{ opacity:0; transform:translateY(8px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .title-block{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    padding:20px 24px;
+    border-bottom:1px solid var(--grid);
+  }
+
+  .title-block h1{
+    margin:0;
+    font-size:1.05rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+
+  .title-block .subtitle{
+    margin-top:4px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--ink-dim);
+  }
+
+  .title-meta{
+    text-align:right;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--ink-dim);
+    line-height:1.6;
+  }
+
+  .title-meta strong{
+    color:var(--ink);
+    font-weight:500;
+  }
+
+  .ruler{
+    display:flex;
+    gap:2px;
+    padding:14px 24px 16px;
+    border-bottom:1px solid var(--grid);
+    flex-wrap:wrap;
+  }
+
+  .tick{
+    width:8px;
+    height:6px;
+    background:var(--grid);
+    cursor:pointer;
+    transition: background-color 0.15s, height 0.15s;
+  }
+
+  .tick:hover{ background:var(--ink-dim); }
+  .tick.current{ background:var(--accent); height:12px; }
+  .tick.right{ background:var(--live); }
+  .tick.wrong{ background:var(--fault); }
+
+  .controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    padding:16px 24px;
+    border-bottom:1px solid var(--grid);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+  }
+
+  .controls label{ color:var(--ink-dim); }
+
+  input[type="number"]{
+    width:52px;
+    padding:6px 8px;
+    background:var(--paper);
+    border:1px solid var(--grid);
+    color:var(--ink);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+  }
+  input[type="number"]:focus{ outline:2px solid var(--accent); outline-offset:1px; }
+
+  button{
+    background:transparent;
+    color:var(--ink-dim);
+    border:1px solid var(--grid);
+    padding:7px 12px;
+    cursor:pointer;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  button:hover:not(:disabled){ border-color:var(--ink-dim); color:var(--ink); }
+  button:disabled{ opacity:0.35; cursor:not-allowed; }
+  button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  .toggle{ display:flex; align-items:center; gap:6px; color:var(--ink-dim); cursor:pointer; user-select:none; }
+  .toggle input{ cursor:pointer; accent-color:var(--accent); }
+
+  .body-area{ padding:26px 24px 24px; }
+
+  .q-index{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    color:var(--accent);
+    margin-bottom:8px;
+  }
+
+  .question-text{
+    font-size:1.12rem;
+    line-height:1.55;
+    margin-bottom:8px;
+    max-width:56ch;
+  }
+
+  .multi-hint{
+    font-size:0.82rem;
+    color:var(--ink-dim);
+    margin-bottom:16px;
+  }
+
+  .options{ display:flex; flex-direction:column; gap:8px; margin-bottom:8px; }
+
+  .option{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:12px 14px;
+    border:1px solid var(--grid);
+    cursor:pointer;
+    transition: border-color 0.15s, background-color 0.15s;
+  }
+  .option:hover:not(.disabled){ border-color:var(--ink-dim); }
+
+  .marker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    color:var(--ink-dim);
+    flex-shrink:0;
+    padding-top:1px;
+  }
+
+  .option input[type="checkbox"]{
+    position:absolute;
+    opacity:0;
+    width:0;
+    height:0;
+  }
+
+  .opt-text{ font-size:0.98rem; line-height:1.45; }
+
+  .option.correct{ border-color:var(--live); background:var(--live-bg); }
+  .option.correct .marker{ color:var(--live); }
+  .option.incorrect{ border-color:var(--fault); background:var(--fault-bg); }
+  .option.incorrect .marker{ color:var(--fault); }
+  .option.disabled{ cursor:default; }
+
+  .submit-row{ display:flex; justify-content:flex-end; margin:14px 0 4px; }
+  .submit-btn{ color:var(--accent); border-color:var(--accent); }
+  .submit-btn:hover:not(:disabled){ color:var(--paper); background:var(--accent); }
+
+  .navigation{
+    display:flex;
+    justify-content:space-between;
+    padding:16px 24px 22px;
+    border-top:1px solid var(--grid);
+  }
+</style>
+</head>
+<body>
+
+  <div class="sheet">
+    <div class="title-block">
+      <div>
+        <h1>Information Security 2</h1>
+        <div class="subtitle">FA1 / FA2 review sheet</div>
+      </div>
+      <div class="title-meta">
+        Sheet <strong id="questionCounter">1</strong> of <span id="totalCount">51</span><br>
+        Score <strong id="scoreDisplay">0</strong>
+      </div>
+    </div>
+
+    <div class="ruler" id="ruler"></div>
+
+    <div class="controls">
+      <label for="jumpInput">Jump to</label>
+      <input type="number" id="jumpInput" min="1" max="51" placeholder="1–51">
+      <button onclick="jumpToQuestion()">Go</button>
+      <button onclick="shuffleQuestions()">Shuffle questions</button>
+      <label class="toggle">
+        <input type="checkbox" id="shuffleOptionsToggle" checked>
+        Shuffle choices
+      </label>
+      <button onclick="resetQuiz()">Reset sheet</button>
+    </div>
+
+    <div class="body-area">
+      <div class="q-index" id="qIndex">Q01</div>
+      <div class="question-text" id="questionText">Loading…</div>
+      <div class="multi-hint" id="multiHint" style="display:none;">Select every option that applies, then submit.</div>
+
+      <div class="options" id="optionsContainer"></div>
+
+      <div class="submit-row" id="submitRow" style="display:none;">
+        <button class="submit-btn" id="submitBtn" onclick="submitMultiAnswer()">Submit answer</button>
+      </div>
+    </div>
+
+    <div class="navigation">
+      <button id="prevBtn" onclick="navigate(-1)">← Previous</button>
+      <button id="nextBtn" onclick="navigate(1)">Next →</button>
+    </div>
+  </div>
+
+<script>
+const originalQuestionsData = [
+  { q: "Which three are major categories of elements in a security operations center? (Choose three.)", options: ["Internet connection", "people", "processes", "database engine", "data center", "technologies"], correct: ["people", "processes", "technologies"] },
+  { q: "Which regulatory law regulates the identification, storage, and transmission of patient personal healthcare information?", options: ["GLBA", "HIPAA", "FISMA", "PCI-DSS"], correct: "HIPAA" },
+  { q: "An employee connects wirelessly to the company network using a cell phone. The employee then configures the cell phone to act as a wireless access point that will allow new employees to connect to the company network. Which type of security threat best describes this situation?", options: ["spoofing", "rogue access point", "denial of service", "cracking"], correct: "rogue access point" },
+  { q: "Why do IoT devices pose a greater risk than other computing devices on a network?", options: ["IoT devices cannot function on an isolated network with only an Internet connection.", "Most IoT devices do not receive frequent firmware updates.", "Most IoT devices do not require an Internet connection and are unable to receive new updates.", "IoT devices require unencrypted wireless connections."], correct: "Most IoT devices do not receive frequent firmware updates." },
+  { q: "Which cyber attack involves a coordinated attack from a botnet of zombie computers?", options: ["ICMP redirect", "DDoS", "address spoofing", "MITM"], correct: "DDoS" },
+  { q: "The term cyber operations analyst refers to which group of personnel in a SOC?", options: ["Tier 3 personnel", "Tier 2 personnel", "Tier 1 personnel", "SOC managers"], correct: "Tier 1 personnel" },
+  { q: "What type of cyberwarfare weapon was Stuxnet?", options: ["virus", "worm", "ransomware", "botnet"], correct: "worm" },
+  { q: "What job would require verification that an alert represents a true security incident or a false positive?", options: ["Incident Reporter", "Threat Hunter", "SOC Manager", "Alert Analyst"], correct: "Alert Analyst" },
+  { q: "A company has just had a cybersecurity incident. The threat actor appeared to have a goal of network disruption and appeared to use a common security hack tool that overwhelmed a particular server with a large amount of traffic. This traffic rendered the server inoperable. How would a certified cybersecurity analyst classify this type of threat actor?", options: ["state-sponsored", "terrorist", "amateur", "hacktivist"], correct: "amateur" },
+  { q: "Which KPI metric does SOAR use to measure the time required to stop the spread of malware in the network?", options: ["Time to Control", "MITC", "MITR", "MTTD"], correct: "Time to Control" },
+  { q: "A group of users on the same network are all complaining about their computers running slowly. After investigating, the technician determines that these computers are part of a zombie network. Which type of malware is used to control these computers?", options: ["rootkit", "botnet", "spyware", "virus"], correct: "botnet" },
+  { q: "Which personnel in a SOC are assigned the task of hunting for potential threats and implementing threat detection tools?", options: ["Tier 3 SME", "Tier 1 Analyst", "SOC Manager", "Tier 2 Incident Reporter"], correct: "Tier 3 SME" },
+  { q: "How does a security information and event management system (SIEM) in a SOC help the personnel fight against security threats?", options: ["by integrating all security devices and appliances in an organization", "by analyzing logging data in real time", "by dynamically implementing firewall rules", "by combining data from multiple technologies"], correct: "by combining data from multiple technologies" },
+  { q: "Which organization is an international nonprofit organization that offers the CISSP certification?", options: ["GIAC", "IEEE", "CompTIA", "(ISC)2"], correct: "(ISC)2" },
+  { q: "What is the main purpose of cyberwarfare?", options: ["to gain advantage over adversaries", "to simulate possible war scenarios among nations", "to develop advanced network devices", "to protect cloud-based data centers"], correct: "to gain advantage over adversaries" },
+  { q: "Which three technologies should be included in a SOC security information and event management system? (Choose three.)", options: ["log management", "firewall appliance", "threat intelligence", "proxy service", "security monitoring", "intrusion prevention"], correct: ["log management", "threat intelligence", "security monitoring"] },
+  { q: "An SOC is searching for a professional to fill a job opening. The employee must have expert-level skills in networking, endpoint, threat intelligence, and malware reverse engineering in order to search for cyber threats hidden within the network. Which job within an SOC requires a professional with those skills?", options: ["Threat Hunter", "SOC Manager", "Incident Responder", "Alert Analyst"], correct: "Threat Hunter" },
+  { q: "In a smart home, an owner has connected many home devices to the Internet, such as the refrigerator and the coffee maker. The owner is concerned that these devices will make the wireless network vulnerable to attacks. What action could be taken to address this issue?", options: ["Configure mixed mode wireless operation.", "Disable the SSID broadcast.", "Assign static IP addresses to the wireless devices.", "Install the latest firmware versions for the devices."], correct: "Install the latest firmware versions for the devices." },
+  { q: "What are two examples of personally identifiable information (PII)? (Choose two.)", options: ["credit card number", "language preference", "street address", "first name", "IP address"], correct: ["credit card number", "street address"] },
+  { q: "A user calls the help desk complaining that the password to access the wireless network has changed without warning. The user is allowed to change the password, but an hour later, the same thing occurs. What might be happening in this situation?", options: ["user laptop", "weak password", "password policy", "rogue access point", "user error"], correct: "rogue access point" },
+  { q: "A worker in the records department of a hospital accidentally sends a medical record of a patient to a printer in another department. When the worker arrives at the printer, the patient record printout is missing. What breach of confidentiality does this situation describe?", options: ["PHI", "PII", "EMR", "PSI"], correct: "PHI" },
+  { q: "Which statement describes cyberwarfare?", options: ["It is simulation software for Air Force pilots that allows them to practice under a simulated war scenario.", "It is Internet-based conflict that involves the penetration of information systems of other nations.", "It is a series of personal protective equipment developed for soldiers involved in nuclear war", "Cyberwarfare is an attack carried out by a group of script kiddies."], correct: "It is Internet-based conflict that involves the penetration of information systems of other nations." },
+  { q: "What is a benefit to an organization of using SOAR as part of the SIEM system?", options: ["SOAR automates incident investigation and responds to workflows based on playbooks.", "SOAR automation guarantees an uptime factor of \"5 nines\".", "SOAR was designed to address critical security events and high-end investigation.", "SOAR would benefit smaller organizations because it requires no cybersecurity analyst involvement once installed."], correct: "SOAR automates incident investigation and responds to workflows based on playbooks." },
+  { q: "What websites should a user avoid when connecting to a free and open wireless hotspot?", options: ["websites to check account fees", "websites to make purchases", "websites to check stock prices", "websites to check product details"], correct: "websites to make purchases" },
+  { q: "What is the dark web?", options: ["It is a website that reports the most recent activities of cybercriminals all over the world.", "It is part of the internet that can only be accessed with special software.", "It is a website that sells stolen credit cards.", "It is part of the internet where a person can obtain personally identifiable information from anyone for free"], correct: "It is part of the internet that can only be accessed with special software." },
+  { q: "When a user turns on the PC on Wednesday, the PC displays a message indicating that all of the user files have been locked. In order to get the files unencrypted, the user is supposed to send an email and include a specific ID in the email title. The message also includes ways to buy and submit bitcoins as payment for the file decryption. After inspecting the message, the technician suspects a security breach occurred. What type of malware could be responsible?", options: ["spyware", "adware", "ransomware", "Trojan"], correct: "ransomware" },
+  { q: "A Linux system boots into the GUI by default, so which application can a network administrator use in order to access the CLI environment?", options: ["system viewer", "package management tool", "file viewer", "terminal emulator"], correct: "terminal emulator" },
+  { q: "Why is Linux considered to be better protected against malware than other operating systems?", options: ["integrated firewall", "fewer deployments", "file system structure, file permissions, and user account restrictions", "customizable penetration and protection tools"], correct: "file system structure, file permissions, and user account restrictions" },
+  { q: "Why is Kali Linux a popular choice in testing the network security of an organization?", options: ["It is an open source Linux security distribution containing many penetration tools.", "It can be used to intercept and log network traffic.", "It can be used to test weaknesses by using only malicious software.", "It is a network scanning tool that prioritizes security risks."], correct: "It is an open source Linux security distribution containing many penetration tools." },
+  { q: "What is the outcome when a Linux administrator enters the man man command?", options: ["The man man command provides a list of commands available at the current prompt", "The man man command opens the most recent log file", "The man man command configures the network interface with a manual address", "The man man command provides documentation about the man command"], correct: "The man man command provides documentation about the man command" },
+  { q: "What is the purpose of using the net accounts command in Windows?", options: ["to show a list of computers and network devices on the network", "to start a network service", "to review the settings of password and logon requirements for users", "to display information about shared network resources"], correct: "to review the settings of password and logon requirements for users" },
+  { q: "Which Windows tool can be used by a cybersecurity administrator to secure stand-alone computers that are not part of an active directory domain?", options: ["Windows Firewall", "Local Security Policy", "PowerShell", "Windows Defender"], correct: "Local Security Policy" },
+  { q: "Which user can override file permissions on a Linux computer?", options: ["any user that has 'other' permission to the file", "only the creator of the file", "root user", "any user that has 'group' permission to the file"], correct: "root user" },
+  { q: "What is the purpose of entering the netsh command on a Windows PC?", options: ["to test the hardware devices on the PC", "to change the computer name for the PC", "to configure networking parameters for the PC", "to create user accounts"], correct: "to configure networking parameters for the PC" },
+  { q: "Why would a network administrator choose Linux as an operating system in the Security Operations Center (SOC)?", options: ["The administrator has more control over the operating system.", "It is easier to use than other operating systems.", "It is more secure than other server operating systems.", "More network applications are created for this environment."], correct: "The administrator has more control over the operating system." },
+  { q: "An IT technician wants to create a rule on two Windows 10 computers to prevent an installed application from accessing the public Internet. Which tool would the technician use to accomplish this task?", options: ["Computer Management", "DMZ", "Windows Defender Firewall with Advanced Security", "Local Security Policy"], correct: "Windows Defender Firewall with Advanced Security" },
+  { q: "Which Linux command can be used to display the name of the current working directory?", options: ["sudo", "pwd", "chmod", "ps"], correct: "pwd" },
+  { q: "Which type of Windows PowerShell command performs an action and returns an output or object to the next command that will be executed?", options: ["cmdlets", "functions", "routines", "scripts"], correct: "cmdlets" },
+  { q: "What technology was created to replace the BIOS program on modern personal computer motherboards?", options: ["RAM", "UEFI", "CMOS", "MBR"], correct: "UEFI" },
+  { q: "Which type of tool allows administrators to observe and understand every detail of a network transaction?", options: ["packet capture software", "malware analysis tool", "ticketing system", "log manager"], correct: "packet capture software" },
+  { q: "What are two benefits of using an ext4 partition instead of ext3? (Choose two.)", options: ["decreased load time", "an increase in the number of supported devices", "compatibility with CDFS", "increase in the size of supported files", "compatibility with NTFS", "improved performance"], correct: ["increase in the size of supported files", "improved performance"] },
+  { q: "What is the well-known port address number used by DNS to serve requests?", options: ["25", "110", "53", "60"], correct: "53" },
+  { q: "A user logs in to Windows with a regular user account and attempts to use an application that requires administrative privileges. What can the user do to successfully use the application?", options: ["Right-click the application and choose Run as root .", "Right-click the application and choose Run as Priviledge .", "Right-click the application and choose Run as Administrator .", "Right-click the application and choose Run as Superuser ."], correct: "Right-click the application and choose Run as Administrator ." },
+  { q: "Which two commands could be used to check if DNS name resolution is working properly on a Windows PC? (Choose two.)", options: ["ipconfig /flushdns", "nbtstat cisco.com", "ping cisco.com", "net cisco.com", "nslookup cisco.com"], correct: ["ping cisco.com", "nslookup cisco.com"] },
+  { q: "Which statement describes the function of the Server Message Block (SMB) protocol?", options: ["It is used to manage remote PCs.", "It is used to share network resources.", "It is used to compress files stored on a disk.", "It is used to stream media contents."], correct: "It is used to share network resources." },
+  { q: "A PC user issues the netstat command without any options. What is displayed as the result of this command?", options: ["a network connection and usage report", "a local routing table", "a list of all established active TCP connections", "a historical list of successful pings that have been sent"], correct: "a list of all established active TCP connections" },
+  { q: "Which two methods can be used to harden a computing device? (Choose two.)", options: ["Update patches on a strict annual basis irrespective of release date.", "Ensure physical security.", "Allow default services to remain enabled.", "Allow USB auto-detection.", "Enforce the password history mechanism."], correct: ["Ensure physical security.", "Enforce the password history mechanism."] },
+  { q: "A technician has installed a third party utility that is used to manage a Windows 7 computer. However, the utility does not automatically start whenever the computer is started. What can the technician do to resolve this problem?", options: ["Set the application registry key value to one.", "Change the startup type for the utility to Automatic in Services .", "Uninstall the program and then choose Add New Programs in the Add or Remove Programs utility to install the application.", "Use the Add or Remove Programs utility to set program access and defaults."], correct: "Change the startup type for the utility to Automatic in Services ." },
+  { q: "What are two advantages of the NTFS file system compared with FAT32? (Choose two.)", options: ["NTFS is easier to configure.", "NTFS allows faster formatting of drives.", "NTFS provides more security features.", "NTFS allows faster access to external peripherals such as a USB drive.", "NTFS supports larger files.", "NTFS allows the automatic detection of bad sectors."], correct: ["NTFS provides more security features.", "NTFS supports larger files."] },
+  { q: "In the Linux shell, which character is used between two commands to instruct the shell to combine and execute these two commands in sequence?", options: ["$", "|", "%"], correct: "|" },
+  { q: "A user creates a file with .ps1 extension in Windows. What type of file is it?", options: ["PowerShell function", "PowerShell script", "PowerShell documentation", "PowerShell cmdlet"], correct: "PowerShell script" }
+];
+
+let questions = JSON.parse(JSON.stringify(originalQuestionsData));
+let currentIndex = 0;
+let score = 0;
+let answeredState = new Array(questions.length).fill(false);
+const LETTERS = ["A","B","C","D","E","F"];
+
+function shuffleArray(array){
+  for(let i=array.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [array[i],array[j]] = [array[j],array[i]];
+  }
+}
+
+function isMultiple(q){ return Array.isArray(q.correct); }
+
+function sameSet(a,b){
+  if(a.length!==b.length) return false;
+  const sa=[...a].sort(); const sb=[...b].sort();
+  return sa.every((v,i)=>v===sb[i]);
+}
+
+function buildRuler(){
+  const ruler = document.getElementById('ruler');
+  ruler.innerHTML = '';
+  questions.forEach((q,i)=>{
+    const t = document.createElement('div');
+    t.className = 'tick';
+    t.title = `Question ${i+1}`;
+    t.onclick = () => { currentIndex = i; loadQuestion(); };
+    ruler.appendChild(t);
+  });
+  updateRuler();
+}
+
+function updateRuler(){
+  const ticks = document.querySelectorAll('.tick');
+  ticks.forEach((t,i)=>{
+    t.classList.remove('current','right','wrong');
+    const q = questions[i];
+    if(answeredState[i]){
+      const correctSet = isMultiple(q) ? q.correct : [q.correct];
+      const userSet = isMultiple(q) ? (q.userAnswer||[]) : [q.userAnswer];
+      t.classList.add(sameSet(userSet, correctSet) ? 'right' : 'wrong');
+    }
+    if(i===currentIndex) t.classList.add('current');
+  });
+}
+
+function loadQuestion(){
+  const currentQ = questions[currentIndex];
+  const isAnswered = answeredState[currentIndex];
+  const multi = isMultiple(currentQ);
+
+  document.getElementById('questionCounter').textContent = currentIndex+1;
+  document.getElementById('totalCount').textContent = questions.length;
+  document.getElementById('qIndex').textContent = 'Q' + String(currentIndex+1).padStart(2,'0');
+  document.getElementById('questionText').textContent = currentQ.q;
+  document.getElementById('prevBtn').disabled = currentIndex===0;
+  document.getElementById('nextBtn').disabled = currentIndex===questions.length-1;
+
+  const multiHint = document.getElementById('multiHint');
+  const submitRow = document.getElementById('submitRow');
+  const submitBtn = document.getElementById('submitBtn');
+  const optionsContainer = document.getElementById('optionsContainer');
+  optionsContainer.innerHTML = '';
+
+  let displayOptions = [...currentQ.options];
+  if(!isAnswered && document.getElementById('shuffleOptionsToggle').checked){
+    shuffleArray(displayOptions);
+  } else if(isAnswered){
+    displayOptions = currentQ.displayedOptions || [...currentQ.options];
+  }
+  currentQ.displayedOptions = displayOptions;
+
+  if(multi){
+    multiHint.style.display = isAnswered ? 'none' : 'block';
+    submitRow.style.display = isAnswered ? 'none' : 'flex';
+    submitBtn.disabled = false;
+
+    displayOptions.forEach((optionText, idx)=>{
+      const optDiv = document.createElement('label');
+      optDiv.className = 'option';
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.value = optionText;
+
+      const marker = document.createElement('span');
+      marker.className = 'marker';
+      marker.textContent = `[${LETTERS[idx]}]`;
+
+      const span = document.createElement('span');
+      span.className = 'opt-text';
+      span.textContent = optionText;
+
+      optDiv.appendChild(marker);
+      optDiv.appendChild(checkbox);
+      optDiv.appendChild(span);
+
+      checkbox.addEventListener('change', ()=>{
+        marker.textContent = checkbox.checked ? `[\u2713]` : `[${LETTERS[idx]}]`;
+      });
+
+      const wasSelected = isAnswered && (currentQ.userAnswer||[]).includes(optionText);
+
+      if(isAnswered){
+        optDiv.classList.add('disabled');
+        checkbox.disabled = true;
+        checkbox.checked = wasSelected;
+        marker.textContent = `[${LETTERS[idx]}]`;
+        const isCorrectOption = currentQ.correct.includes(optionText);
+        if(isCorrectOption){ optDiv.classList.add('correct'); }
+        else if(wasSelected){ optDiv.classList.add('incorrect'); }
+      }
+
+      optionsContainer.appendChild(optDiv);
+    });
+  } else {
+    multiHint.style.display = 'none';
+    submitRow.style.display = 'none';
+
+    displayOptions.forEach((optionText, idx)=>{
+      const optDiv = document.createElement('div');
+      optDiv.className = 'option';
+
+      const marker = document.createElement('span');
+      marker.className = 'marker';
+      marker.textContent = `[${LETTERS[idx]}]`;
+
+      const span = document.createElement('span');
+      span.className = 'opt-text';
+      span.textContent = optionText;
+
+      optDiv.appendChild(marker);
+      optDiv.appendChild(span);
+
+      if(isAnswered){
+        optDiv.classList.add('disabled');
+        if(optionText === currentQ.correct){ optDiv.classList.add('correct'); }
+        else if(optionText === currentQ.userAnswer && currentQ.userAnswer !== currentQ.correct){ optDiv.classList.add('incorrect'); }
+      } else {
+        optDiv.onclick = () => handleAnswer(optDiv, optionText);
+      }
+
+      optionsContainer.appendChild(optDiv);
+    });
+  }
+
+  updateRuler();
+}
+
+function handleAnswer(element, selectedAnswer){
+  if(answeredState[currentIndex]) return;
+  const currentQ = questions[currentIndex];
+  currentQ.userAnswer = selectedAnswer;
+  answeredState[currentIndex] = true;
+
+  document.querySelectorAll('.option').forEach(opt=>opt.classList.add('disabled'));
+
+  if(selectedAnswer === currentQ.correct){
+    element.classList.add('correct');
+    score++;
+    document.getElementById('scoreDisplay').textContent = score;
+  } else {
+    element.classList.add('incorrect');
+    document.querySelectorAll('.option').forEach(opt=>{
+      if(opt.querySelector('.opt-text').textContent === currentQ.correct){
+        opt.classList.add('correct');
+      }
+    });
+  }
+  updateRuler();
+}
+
+function submitMultiAnswer(){
+  if(answeredState[currentIndex]) return;
+  const currentQ = questions[currentIndex];
+  const checkboxes = document.querySelectorAll('#optionsContainer input[type="checkbox"]');
+  const selected = Array.from(checkboxes).filter(cb=>cb.checked).map(cb=>cb.value);
+
+  currentQ.userAnswer = selected;
+  answeredState[currentIndex] = true;
+
+  if(sameSet(selected, currentQ.correct)){
+    score++;
+    document.getElementById('scoreDisplay').textContent = score;
+  }
+  loadQuestion();
+}
+
+function navigate(direction){
+  currentIndex += direction;
+  if(currentIndex<0) currentIndex=0;
+  if(currentIndex>=questions.length) currentIndex=questions.length-1;
+  loadQuestion();
+}
+
+function jumpToQuestion(){
+  const input = document.getElementById('jumpInput');
+  const val = parseInt(input.value);
+  if(!isNaN(val) && val>=1 && val<=questions.length){
+    currentIndex = val-1;
+    loadQuestion();
+    input.value='';
+  } else {
+    alert(`Please enter a valid number between 1 and ${questions.length}`);
+  }
+}
+
+function shuffleQuestions(){
+  if(confirm("This will restart the sheet and wipe your current score. Continue?")){
+    shuffleArray(questions);
+    resetStates();
+  }
+}
+
+function resetQuiz(){
+  if(confirm("This will reset the sheet back to the original order. Continue?")){
+    questions = JSON.parse(JSON.stringify(originalQuestionsData));
+    resetStates();
+  }
+}
+
+function resetStates(){
+  currentIndex = 0;
+  score = 0;
+  answeredState = new Array(questions.length).fill(false);
+  document.getElementById('scoreDisplay').textContent = score;
+  buildRuler();
+  loadQuestion();
+}
+
+document.getElementById('jumpInput').addEventListener('keypress', function(e){
+  if(e.key==='Enter') jumpToQuestion();
+});
+
+buildRuler();
+loadQuestion();
+</script>
+</body>
+</html>

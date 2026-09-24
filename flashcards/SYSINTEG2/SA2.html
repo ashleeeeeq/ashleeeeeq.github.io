@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Systems Integration and Architecture 2 — Review Sheet SA2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#0E1C2C;
+    --panel:#14283D;
+    --grid:#1F3A54;
+    --grid-soft:#182F45;
+    --ink:#DCE8F0;
+    --ink-dim:#7C93A8;
+    --accent:#F2A65A;
+    --live:#57C785;
+    --live-bg:rgba(87,199,133,0.12);
+    --fault:#E2685C;
+    --fault-bg:rgba(226,104,92,0.12);
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(var(--grid-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-soft) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    display:flex;
+    justify-content:center;
+    padding:40px 16px;
+  }
+
+  .sheet{
+    width:100%;
+    max-width:680px;
+    background:var(--panel);
+    border:1px solid var(--grid);
+    animation: settle 0.5s ease-out;
+  }
+
+  @keyframes settle{
+    from{ opacity:0; transform:translateY(8px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .title-block{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    padding:20px 24px;
+    border-bottom:1px solid var(--grid);
+  }
+
+  .title-block h1{
+    margin:0;
+    font-size:1.05rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+
+  .title-block .subtitle{
+    margin-top:4px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--ink-dim);
+  }
+
+  .title-meta{
+    text-align:right;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--ink-dim);
+    line-height:1.6;
+  }
+
+  .title-meta strong{
+    color:var(--ink);
+    font-weight:500;
+  }
+
+  .ruler{
+    display:flex;
+    gap:2px;
+    padding:14px 24px 16px;
+    border-bottom:1px solid var(--grid);
+    flex-wrap:wrap;
+  }
+
+  .tick{
+    width:8px;
+    height:6px;
+    background:var(--grid);
+    cursor:pointer;
+    transition: background-color 0.15s, height 0.15s;
+  }
+
+  .tick:hover{ background:var(--ink-dim); }
+  .tick.current{ background:var(--accent); height:12px; }
+  .tick.right{ background:var(--live); }
+  .tick.wrong{ background:var(--fault); }
+
+  .controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    padding:16px 24px;
+    border-bottom:1px solid var(--grid);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+  }
+
+  .controls label{ color:var(--ink-dim); }
+
+  input[type="number"]{
+    width:52px;
+    padding:6px 8px;
+    background:var(--paper);
+    border:1px solid var(--grid);
+    color:var(--ink);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+  }
+  input[type="number"]:focus{ outline:2px solid var(--accent); outline-offset:1px; }
+
+  button{
+    background:transparent;
+    color:var(--ink-dim);
+    border:1px solid var(--grid);
+    padding:7px 12px;
+    cursor:pointer;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  button:hover:not(:disabled){ border-color:var(--ink-dim); color:var(--ink); }
+  button:disabled{ opacity:0.35; cursor:not-allowed; }
+  button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  .toggle{ display:flex; align-items:center; gap:6px; color:var(--ink-dim); cursor:pointer; user-select:none; }
+  .toggle input{ cursor:pointer; accent-color:var(--accent); }
+
+  .body-area{ padding:26px 24px 24px; }
+
+  .q-index{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    color:var(--accent);
+    margin-bottom:8px;
+  }
+
+  .question-text{
+    font-size:1.12rem;
+    line-height:1.55;
+    margin-bottom:8px;
+    max-width:56ch;
+  }
+
+  .multi-hint{
+    font-size:0.82rem;
+    color:var(--ink-dim);
+    margin-bottom:16px;
+  }
+
+  .options{ display:flex; flex-direction:column; gap:8px; margin-bottom:8px; }
+
+  .option{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:12px 14px;
+    border:1px solid var(--grid);
+    cursor:pointer;
+    transition: border-color 0.15s, background-color 0.15s;
+  }
+  .option:hover:not(.disabled){ border-color:var(--ink-dim); }
+
+  .marker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    color:var(--ink-dim);
+    flex-shrink:0;
+    padding-top:1px;
+  }
+
+  .option input[type="checkbox"]{
+    position:absolute;
+    opacity:0;
+    width:0;
+    height:0;
+  }
+
+  .opt-text{ font-size:0.98rem; line-height:1.45; }
+
+  .option.correct{ border-color:var(--live); background:var(--live-bg); }
+  .option.correct .marker{ color:var(--live); }
+  .option.incorrect{ border-color:var(--fault); background:var(--fault-bg); }
+  .option.incorrect .marker{ color:var(--fault); }
+  .option.disabled{ cursor:default; }
+
+  .submit-row{ display:flex; justify-content:flex-end; margin:14px 0 4px; }
+  .submit-btn{ color:var(--accent); border-color:var(--accent); }
+  .submit-btn:hover:not(:disabled){ color:var(--paper); background:var(--accent); }
+
+  .navigation{
+    display:flex;
+    justify-content:space-between;
+    padding:16px 24px 22px;
+    border-top:1px solid var(--grid);
+  }
+</style>
+</head>
+<body>
+
+  <div class="sheet">
+    <div class="title-block">
+      <div>
+        <h1>Systems Integration &amp; Architecture 2</h1>
+        <div class="subtitle">SA2 review sheet</div>
+      </div>
+      <div class="title-meta">
+        Sheet <strong id="questionCounter">1</strong> of <span id="totalCount">60</span><br>
+        Score <strong id="scoreDisplay">0</strong>
+      </div>
+    </div>
+
+    <div class="ruler" id="ruler"></div>
+
+    <div class="controls">
+      <label for="jumpInput">Jump to</label>
+      <input type="number" id="jumpInput" min="1" max="60" placeholder="1–60">
+      <button onclick="jumpToQuestion()">Go</button>
+      <button onclick="shuffleQuestions()">Shuffle questions</button>
+      <label class="toggle">
+        <input type="checkbox" id="shuffleOptionsToggle" checked>
+        Shuffle choices
+      </label>
+      <button onclick="resetQuiz()">Reset sheet</button>
+    </div>
+
+    <div class="body-area">
+      <div class="q-index" id="qIndex">Q01</div>
+      <div class="question-text" id="questionText">Loading…</div>
+      <div class="multi-hint" id="multiHint" style="display:none;">Select every option that applies, then submit.</div>
+
+      <div class="options" id="optionsContainer"></div>
+
+      <div class="submit-row" id="submitRow" style="display:none;">
+        <button class="submit-btn" id="submitBtn" onclick="submitMultiAnswer()">Submit answer</button>
+      </div>
+    </div>
+
+    <div class="navigation">
+      <button id="prevBtn" onclick="navigate(-1)">← Previous</button>
+      <button id="nextBtn" onclick="navigate(1)">Next →</button>
+    </div>
+  </div>
+
+<script>
+const originalQuestionsData = [
+  { q: "Why do consistent error semantics matter at a boundary?", options: ["The same condition must always produce the same code and message shape for consumers to handle it", "They are required by the HTTP specification", "They make log files smaller", "They eliminate the need for retries"], correct: "The same condition must always produce the same code and message shape for consumers to handle it" },
+  { q: "In an integration team, the definition of done should include:", options: ["Code committed to the main branch", "A completed timesheet", "Approval from the finance department", "Interface tests passing, so \"done\" cannot mean \"works on my side\""], correct: "Interface tests passing, so \"done\" cannot mean \"works on my side\"" },
+  { q: "T/F: A contract test can be executed without the partner system running.", options: ["True", "False"], correct: "True" },
+  { q: "Which does a useful interface contract specify beyond operation signatures?", options: ["The meaning of every field, the complete error set, and the rules for changing the contract", "The provider's staffing plan", "The physical server locations", "The provider's test coverage percentage"], correct: "The meaning of every field, the complete error set, and the rules for changing the contract" },
+  { q: "T/F: Data arriving from a partner organization should be validated before use.", options: ["True", "False"], correct: "True" },
+  { q: "A contract test verifies:", options: ["That the user interface renders correctly", "That one side honours the published contract, independently of the other party", "That the whole system meets its performance target", "The internal logic of a private method"], correct: "That one side honours the published contract, independently of the other party" },
+  { q: "Why must timezone and encoding be specified explicitly at a boundary?", options: ["They are required for authentication", "They affect database size", "They determine the retry interval", "The partner may not share your platform defaults"], correct: "The partner may not share your platform defaults" },
+  { q: "T/F: Expand and contract may safely be performed in the same release if consumers are notified.", options: ["True", "False"], correct: "False" },
+  { q: "Why do short iterations that integrate continuously reduce risk?", options: ["They remove the need for contract tests", "They eliminate partner dependencies", "They keep each integration surprise small rather than deferring one large one", "They reduce the total amount of work"], correct: "They keep each integration surprise small rather than deferring one large one" },
+  { q: "Why does idempotency matter for integration?", options: ["It guarantees ordering", "Retries and duplicate deliveries must not create duplicate records or charges", "It removes the need for authentication", "It reduces payload size"], correct: "Retries and duplicate deliveries must not create duplicate records or charges" },
+  { q: "Which of the following are failure paths an integration test suite must cover? (Choose 4)", options: ["The partner's source code fails to compile", "The partner returns an error response", "A duplicate message arrives", "The partner times out", "The partner returns malformed data"], correct: ["The partner returns an error response", "A duplicate message arrives", "The partner times out", "The partner returns malformed data"] },
+  { q: "Construction for integration differs from construction for a standalone module because:", options: ["Coding standards no longer apply", "The interface is a contract with a party you do not control", "Testing becomes optional", "Different languages must be used"], correct: "The interface is a contract with a party you do not control" },
+  { q: "If a partner returns malformed data and your system stores it unchecked, the consequence is:", options: ["A slower response time only", "A failed unit test", "Corrupted state that may persist long after the incident", "A licensing violation"], correct: "Corrupted state that may persist long after the incident" },
+  { q: "Inside your own module a sloppy convention costs readability. Across an integration boundary it costs:", options: ["A production incident", "Documentation effort only", "Nothing measurable", "Compilation time"], correct: "A production incident" },
+  { q: "An interface contract is best described as:", options: ["A legal document signed by both organizations", "A shared understanding between the two teams", "The source code of the provider", "A written artifact stating what consumers may rely on and what the provider guarantees"], correct: "A written artifact stating what consumers may rely on and what the provider guarantees" },
+  { q: "What is the purpose of a correlation ID in structured logging?", options: ["To encrypt sensitive fields", "To trace a single request across every participating system", "To compress the log file", "To identify the developer who wrote the code"], correct: "To trace a single request across every participating system" },
+  { q: "A partner responds slowly but successfully, and your retries stack up. The resulting problem is:", options: ["An authentication failure", "A versioning conflict", "A data corruption defect", "Load amplification against an already struggling partner"], correct: "Load amplification against an already struggling partner" },
+  { q: "\"Absent\", \"empty\", and \"zero\" should be treated as:", options: ["Equivalent values for simplicity", "Three distinct states that must be explicitly specified", "Interchangeable in JSON payloads", "Errors in all cases"], correct: "Three distinct states that must be explicitly specified" },
+  { q: "In the expand-then-contract sequence, the first step is to:", options: ["Version the entire API", "Notify consumers after deployment", "Add the new field or operation alongside the old one", "Remove the old field immediately"], correct: "Add the new field or operation alongside the old one" },
+  { q: "In expand-then-contract, when may the old field be removed?", options: ["In the same release as the new one", "Only if the partner requests it", "After a fixed thirty days regardless of usage", "Only after verifying that no traffic remains on the old form"], correct: "Only after verifying that no traffic remains on the old form" },
+  { q: "Why must expand and contract never occur in one release?", options: ["It doubles the deployment time", "It violates semantic versioning", "Consumers have no window in which to migrate, so they break", "It complicates the changelog"], correct: "Consumers have no window in which to migrate, so they break" },
+  { q: "Why is a contract test cheaper insurance than an integration test alone?", options: ["It replaces the need for unit tests", "It is fast and deterministic, and catches drift the moment it is introduced", "It executes more code paths", "It requires no assertions"], correct: "It is fast and deterministic, and catches drift the moment it is introduced" },
+  { q: "Data crossing an organizational boundary should be:", options: ["Stored unmodified for audit only", "Trusted, since the partner is contractually bound", "Accepted only if it is XML", "Validated defensively before use"], correct: "Validated defensively before use" },
+  { q: "Once a contract is published and consumed, every change to it should be treated as:", options: ["A breaking change until proved otherwise", "A change requiring no notice", "A documentation-only update", "A routine internal refactoring"], correct: "A breaking change until proved otherwise" },
+  { q: "Which does an integration test catch that a contract test does not?", options: ["A violation of the published contract", "An unformatted log message", "Problems the contract did not anticipate, arising when both sides actually run together", "A syntax error in the provider"], correct: "Problems the contract did not anticipate, arising when both sides actually run together" },
+  { q: "Which test can run without the other party being available?", options: ["An acceptance test", "An integration test", "A system test", "A contract test"], correct: "A contract test" },
+  { q: "An operation is idempotent when:", options: ["It runs in constant time", "It always returns the same value", "It cannot fail", "Repeating it does not produce a second side effect"], correct: "Repeating it does not produce a second side effect" },
+  { q: "Which failure case must an integration suite cover?", options: ["Only performance under load", "Timeout, error response, malformed data, unavailability, and duplicate delivery", "Only the successful exchange", "Only authentication failures"], correct: "Timeout, error response, malformed data, unavailability, and duplicate delivery" },
+  { q: "A unit test verifies:", options: ["That a component is internally correct in isolation", "That one side honours the published contract", "That two systems work together end to end", "That the network is reliable"], correct: "That a component is internally correct in isolation" },
+  { q: "A circuit breaker is used to:", options: ["Stop calling a failing dependency so the failure does not cascade", "Compress large payloads", "Guarantee message ordering", "Encrypt traffic between systems"], correct: "Stop calling a failing dependency so the failure does not cascade" },
+  { q: "A legacy system offers only a nightly batch interface but the new system needs near-real-time data. This is:", options: ["A performance tuning problem", "A licensing issue", "A defect in the legacy system", "An integration constraint that must be designed around"], correct: "An integration constraint that must be designed around" },
+  { q: "Which is a REST design constraint?", options: ["Clients must know the server's internal structure", "Statelessness: every request carries what is needed to process it", "Sessions must be held on the server between calls", "Responses must never be cached"], correct: "Statelessness: every request carries what is needed to process it" },
+  { q: "The REST \"uniform interface\" constraint means that:", options: ["All services must look identical to users", "Only GET may be used", "All responses must have the same schema", "Resources are identified by URI and standard verbs carry standard meanings"], correct: "Resources are identified by URI and standard verbs carry standard meanings" },
+  { q: "Which is a genuine cost of a micro-service decomposition?", options: ["Loss of independent deployability", "Inability to use HTTP", "Operational complexity, distributed data consistency, and network chattiness", "Loss of the ability to scale"], correct: "Operational complexity, distributed data consistency, and network chattiness" },
+  { q: "Why is UDDI less prominent in current practice?", options: ["It was withdrawn from the standard", "It requires proprietary licensing", "Central public discovery proved less useful than expected; internal catalogues largely replaced it", "It is incompatible with HTTP"], correct: "Central public discovery proved less useful than expected; internal catalogues largely replaced it" },
+  { q: "In classic web service architecture, WSDL provides:", options: ["The encryption layer", "The service registry", "The transport protocol", "A machine-readable interface definition forming a strong formal contract"], correct: "A machine-readable interface definition forming a strong formal contract" },
+  { q: "A team treats integration as \"the bit after the coding\". The consequence is that:", options: ["Contracts become unnecessary", "Integration becomes cheaper", "They have already lost the ability to influence the decisions that constrain it", "Testing is simplified"], correct: "They have already lost the ability to influence the decisions that constrain it" },
+  { q: "Which of the following are common integration pitfalls? (Choose 4)", options: ["Publishing an interface definition before implementation", "Neglecting versioning until a breaking release", "Designing and testing only the happy path", "Assuming two systems share the same data semantics", "Coupling to another system's internal model"], correct: ["Neglecting versioning until a breaking release", "Designing and testing only the happy path", "Assuming two systems share the same data semantics", "Coupling to another system's internal model"] },
+  { q: "Which pitfall does an anti-corruption layer specifically guard against?", options: ["Ignoring failure paths", "Coupling to another system's internal model", "Point-to-point sprawl", "Neglecting versioning"], correct: "Coupling to another system's internal model" },
+  { q: "REST offers weaker formal contracts than WSDL unless you:", options: ["Use XML instead of JSON", "Impose schema discipline deliberately, for example with OpenAPI or JSON Schema", "Add more HTTP verbs", "Increase the timeout values"], correct: "Impose schema discipline deliberately, for example with OpenAPI or JSON Schema" },
+  { q: "An Enterprise Service Bus centralises:", options: ["User authentication only", "Database storage", "Routing, transformation, protocol bridging, and policy", "Application business logic"], correct: "Routing, transformation, protocol bridging, and policy" },
+  { q: "Why should versioning begin from day one?", options: ["It improves performance", "A contract with no version is a contract you cannot change safely", "It is required by HTTP", "It reduces payload size"], correct: "A contract with no version is a contract you cannot change safely" },
+  { q: "T/F: Micro-services eliminate the need to reason about data consistency.", options: ["True", "False"], correct: "False" },
+  { q: "Systems integration management frames integration as:", options: ["A phase performed after coding is complete", "A procurement activity", "A responsibility of the operations team alone", "A concern that runs through the entire life cycle"], correct: "A concern that runs through the entire life cycle" },
+  { q: "Service-Oriented Architecture organises capability into:", options: ["Client-side scripts only", "A single monolithic executable", "Many small independently deployable services owning their own data", "Coarse-grained reusable services, often mediated by a bus"], correct: "Coarse-grained reusable services, often mediated by a bus" },
+  { q: "Which integration approach provides the strongest formal contract by default?", options: ["Web services defined by WSDL", "REST without schema discipline", "Shared database access", "Message queues"], correct: "Web services defined by WSDL" },
+  { q: "T/F: Point-to-point integration grows as n(n-1)/2 while mediated integration grows linearly.", options: ["True", "False"], correct: "True" },
+  { q: "T/F: An anti-corruption layer prevents a partner's internal model from leaking into your design.", options: ["True", "False"], correct: "True" },
+  { q: "An anti-corruption layer is used to:", options: ["Authenticate external users", "Compress batch files", "Encrypt data at rest", "Translate between the legacy model and your own so their model does not leak into your design"], correct: "Translate between the legacy model and your own so their model does not leak into your design" },
+  { q: "Eight systems connected point to point require approximately how many connections?", options: ["8", "64", "16", "28"], correct: "28" },
+  { q: "Micro-service architecture is characterised by:", options: ["A single deployable artifact", "Services sharing one central database", "Synchronous communication only", "Small, independently deployable services, each owning its own data"], correct: "Small, independently deployable services, each owning its own data" },
+  { q: "SOAP is best described as:", options: ["An XML-based messaging protocol, independent of transport", "A service registry", "A REST design constraint", "An interface definition language"], correct: "An XML-based messaging protocol, independent of transport" },
+  { q: "Which criterion most favours micro-services over an ESB?", options: ["A need for services to be deployed and scaled independently", "Heavy reliance on legacy protocol bridging", "A small team with limited operations capability", "A need for centralised policy enforcement"], correct: "A need for services to be deployed and scaled independently" },
+  { q: "In the integration life cycle, decisions taken during architecture principally constrain:", options: ["The marketing schedule", "What construction can then do", "The recruitment plan", "The licensing model"], correct: "What construction can then do" },
+  { q: "The ESB is simultaneously a governance benefit and:", options: ["A substitute for contracts", "A security guarantee", "A single point of failure and an organizational bottleneck", "A performance optimisation"], correct: "A single point of failure and an organizational bottleneck" },
+  { q: "A best practice for web service composition is to design the contract:", options: ["Only when a second consumer appears", "At deployment time", "After the implementation, by documenting what was built", "First, then generate or implement from it"], correct: "First, then generate or implement from it" },
+  { q: "Which criterion most favours an ESB over micro-services?", options: ["A need for independent deployment per service", "A need for central governance and legacy protocol adaptation", "A need to avoid any single point of failure", "A need for technology freedom per service"], correct: "A need for central governance and legacy protocol adaptation" },
+  { q: "Mediating the same eight systems through a hub requires approximately:", options: ["8 connections", "28 connections", "56 connections", "64 connections"], correct: "8 connections" },
+  { q: "What does UDDI provide in a classic web service architecture?", options: ["The interface definition language", "The message envelope format", "A registry where services are published and discovered", "The security token service"], correct: "A registry where services are published and discovered" },
+  { q: "Returning a stack trace across an integration boundary is poor practice because it:", options: ["Leaks internal detail and gives the consumer nothing structured to handle", "Increases response size only", "Violates the REST specification", "Prevents caching"], correct: "Leaks internal detail and gives the consumer nothing structured to handle" }
+];
+
+let questions = JSON.parse(JSON.stringify(originalQuestionsData));
+let currentIndex = 0;
+let score = 0;
+let answeredState = new Array(questions.length).fill(false);
+const LETTERS = ["A","B","C","D","E","F"];
+
+function shuffleArray(array){
+  for(let i=array.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [array[i],array[j]] = [array[j],array[i]];
+  }
+}
+
+function isMultiple(q){ return Array.isArray(q.correct); }
+
+function sameSet(a,b){
+  if(a.length!==b.length) return false;
+  const sa=[...a].sort(); const sb=[...b].sort();
+  return sa.every((v,i)=>v===sb[i]);
+}
+
+function buildRuler(){
+  const ruler = document.getElementById('ruler');
+  ruler.innerHTML = '';
+  questions.forEach((q,i)=>{
+    const t = document.createElement('div');
+    t.className = 'tick';
+    t.title = `Question ${i+1}`;
+    t.onclick = () => { currentIndex = i; loadQuestion(); };
+    ruler.appendChild(t);
+  });
+  updateRuler();
+}
+
+function updateRuler(){
+  const ticks = document.querySelectorAll('.tick');
+  ticks.forEach((t,i)=>{
+    t.classList.remove('current','right','wrong');
+    const q = questions[i];
+    if(answeredState[i]){
+      const correctSet = isMultiple(q) ? q.correct : [q.correct];
+      const userSet = isMultiple(q) ? (q.userAnswer||[]) : [q.userAnswer];
+      t.classList.add(sameSet(userSet, correctSet) ? 'right' : 'wrong');
+    }
+    if(i===currentIndex) t.classList.add('current');
+  });
+}
+
+function loadQuestion(){
+  const currentQ = questions[currentIndex];
+  const isAnswered = answeredState[currentIndex];
+  const multi = isMultiple(currentQ);
+
+  document.getElementById('questionCounter').textContent = currentIndex+1;
+  document.getElementById('totalCount').textContent = questions.length;
+  document.getElementById('qIndex').textContent = 'Q' + String(currentIndex+1).padStart(2,'0');
+  document.getElementById('questionText').textContent = currentQ.q;
+  document.getElementById('prevBtn').disabled = currentIndex===0;
+  document.getElementById('nextBtn').disabled = currentIndex===questions.length-1;
+
+  const multiHint = document.getElementById('multiHint');
+  const submitRow = document.getElementById('submitRow');
+  const submitBtn = document.getElementById('submitBtn');
+  const optionsContainer = document.getElementById('optionsContainer');
+  optionsContainer.innerHTML = '';
+
+  let displayOptions = [...currentQ.options];
+  if(!isAnswered && document.getElementById('shuffleOptionsToggle').checked){
+    shuffleArray(displayOptions);
+  } else if(isAnswered){
+    displayOptions = currentQ.displayedOptions || [...currentQ.options];
+  }
+  currentQ.displayedOptions = displayOptions;
+
+  if(multi){
+    multiHint.style.display = isAnswered ? 'none' : 'block';
+    submitRow.style.display = isAnswered ? 'none' : 'flex';
+    submitBtn.disabled = false;
+
+    displayOptions.forEach((optionText, idx)=>{
+      const optDiv = document.createElement('label');
+      optDiv.className = 'option';
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.value = optionText;
+
+      const marker = document.createElement('span');
+      marker.className = 'marker';
+      marker.textContent = `[${LETTERS[idx]}]`;
+
+      const span = document.createElement('span');
+      span.className = 'opt-text';
+      span.textContent = optionText;
+
+      optDiv.appendChild(marker);
+      optDiv.appendChild(checkbox);
+      optDiv.appendChild(span);
+
+      checkbox.addEventListener('change', ()=>{
+        marker.textContent = checkbox.checked ? `[\u2713]` : `[${LETTERS[idx]}]`;
+      });
+
+      const wasSelected = isAnswered && (currentQ.userAnswer||[]).includes(optionText);
+
+      if(isAnswered){
+        optDiv.classList.add('disabled');
+        checkbox.disabled = true;
+        checkbox.checked = wasSelected;
+        marker.textContent = `[${LETTERS[idx]}]`;
+        const isCorrectOption = currentQ.correct.includes(optionText);
+        if(isCorrectOption){ optDiv.classList.add('correct'); }
+        else if(wasSelected){ optDiv.classList.add('incorrect'); }
+      }
+
+      optionsContainer.appendChild(optDiv);
+    });
+  } else {
+    multiHint.style.display = 'none';
+    submitRow.style.display = 'none';
+
+    displayOptions.forEach((optionText, idx)=>{
+      const optDiv = document.createElement('div');
+      optDiv.className = 'option';
+
+      const marker = document.createElement('span');
+      marker.className = 'marker';
+      marker.textContent = `[${LETTERS[idx]}]`;
+
+      const span = document.createElement('span');
+      span.className = 'opt-text';
+      span.textContent = optionText;
+
+      optDiv.appendChild(marker);
+      optDiv.appendChild(span);
+
+      if(isAnswered){
+        optDiv.classList.add('disabled');
+        if(optionText === currentQ.correct){ optDiv.classList.add('correct'); }
+        else if(optionText === currentQ.userAnswer && currentQ.userAnswer !== currentQ.correct){ optDiv.classList.add('incorrect'); }
+      } else {
+        optDiv.onclick = () => handleAnswer(optDiv, optionText);
+      }
+
+      optionsContainer.appendChild(optDiv);
+    });
+  }
+
+  updateRuler();
+}
+
+function handleAnswer(element, selectedAnswer){
+  if(answeredState[currentIndex]) return;
+  const currentQ = questions[currentIndex];
+  currentQ.userAnswer = selectedAnswer;
+  answeredState[currentIndex] = true;
+
+  document.querySelectorAll('.option').forEach(opt=>opt.classList.add('disabled'));
+
+  if(selectedAnswer === currentQ.correct){
+    element.classList.add('correct');
+    score++;
+    document.getElementById('scoreDisplay').textContent = score;
+  } else {
+    element.classList.add('incorrect');
+    document.querySelectorAll('.option').forEach(opt=>{
+      if(opt.querySelector('.opt-text').textContent === currentQ.correct){
+        opt.classList.add('correct');
+      }
+    });
+  }
+  updateRuler();
+}
+
+function submitMultiAnswer(){
+  if(answeredState[currentIndex]) return;
+  const currentQ = questions[currentIndex];
+  const checkboxes = document.querySelectorAll('#optionsContainer input[type="checkbox"]');
+  const selected = Array.from(checkboxes).filter(cb=>cb.checked).map(cb=>cb.value);
+
+  currentQ.userAnswer = selected;
+  answeredState[currentIndex] = true;
+
+  if(sameSet(selected, currentQ.correct)){
+    score++;
+    document.getElementById('scoreDisplay').textContent = score;
+  }
+  loadQuestion();
+}
+
+function navigate(direction){
+  currentIndex += direction;
+  if(currentIndex<0) currentIndex=0;
+  if(currentIndex>=questions.length) currentIndex=questions.length-1;
+  loadQuestion();
+}
+
+function jumpToQuestion(){
+  const input = document.getElementById('jumpInput');
+  const val = parseInt(input.value);
+  if(!isNaN(val) && val>=1 && val<=questions.length){
+    currentIndex = val-1;
+    loadQuestion();
+    input.value='';
+  } else {
+    alert(`Please enter a valid number between 1 and ${questions.length}`);
+  }
+}
+
+function shuffleQuestions(){
+  if(confirm("This will restart the sheet and wipe your current score. Continue?")){
+    shuffleArray(questions);
+    resetStates();
+  }
+}
+
+function resetQuiz(){
+  if(confirm("This will reset the sheet back to the original order. Continue?")){
+    questions = JSON.parse(JSON.stringify(originalQuestionsData));
+    resetStates();
+  }
+}
+
+function resetStates(){
+  currentIndex = 0;
+  score = 0;
+  answeredState = new Array(questions.length).fill(false);
+  document.getElementById('scoreDisplay').textContent = score;
+  buildRuler();
+  loadQuestion();
+}
+
+document.getElementById('jumpInput').addEventListener('keypress', function(e){
+  if(e.key==='Enter') jumpToQuestion();
+});
+
+buildRuler();
+loadQuestion();
+</script>
+</body>
+</html>

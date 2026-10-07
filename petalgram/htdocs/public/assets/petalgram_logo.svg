@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Petalgram Flowershop">
+  <g transform="translate(32 30)">
+    <g fill="#7C3AED">
+      <ellipse cx="0" cy="-13" rx="7" ry="13"/>
+      <ellipse cx="0" cy="-13" rx="7" ry="13" transform="rotate(72)"/>
+      <ellipse cx="0" cy="-13" rx="7" ry="13" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-13" rx="7" ry="13" transform="rotate(216)"/>
+      <ellipse cx="0" cy="-13" rx="7" ry="13" transform="rotate(288)"/>
+    </g>
+    <g fill="#5B21B6">
+      <ellipse cx="0" cy="-9" rx="4.5" ry="9" transform="rotate(36)"/>
+      <ellipse cx="0" cy="-9" rx="4.5" ry="9" transform="rotate(108)"/>
+      <ellipse cx="0" cy="-9" rx="4.5" ry="9" transform="rotate(180)"/>
+      <ellipse cx="0" cy="-9" rx="4.5" ry="9" transform="rotate(252)"/>
+      <ellipse cx="0" cy="-9" rx="4.5" ry="9" transform="rotate(324)"/>
+    </g>
+    <circle r="6.5" fill="#F59E0B"/>
+    <circle r="3" fill="#FDE68A"/>
+  </g>
+  <path d="M32 47 C30 52 27 55 23 57" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"/>
+  <path d="M24 54 C20 50 17 51 16 55 C20 57 23 56 24 54 Z" fill="#10B981"/>
+</svg>
